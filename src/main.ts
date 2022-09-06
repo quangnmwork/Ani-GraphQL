@@ -1,13 +1,10 @@
-import { createApp } from "vue";
-import App from "~/App.vue";
-//Vue Router
-import index from "./router";
+import { createApp } from 'vue';
+import App from '~/App.vue';
+import index from './router';
 
-import { createPinia } from "pinia";
+import { createPinia } from 'pinia';
 
-import "~/styles/tailwind.css";
-import "~/styles/main.scss";
-import "~/styles/nprogress.scss";
+import '~/styles/tailwind.css';
 
 const app = createApp(App);
 
@@ -15,4 +12,5 @@ app.use(createPinia());
 
 app.use(index);
 
-app.mount("#app");
+app.mount('#app');
+

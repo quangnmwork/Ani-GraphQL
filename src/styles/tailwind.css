@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.img-fluid {
+  @apply max-w-full h-auto;
+}

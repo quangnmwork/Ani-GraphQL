@@ -6,19 +6,15 @@
     "useDefineForClassFields": true,
     "moduleResolution": "node",
     "strict": true,
-    "incremental": false,
-    "skipLibCheck": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "lib": ["DOM", "ESNext"]
+    "lib": ["DOM", "ESNext"],
+    "jsx": "preserve"
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "components.d.ts"],
   "paths": {
     "~/*": ["src/*"]
   },
   "exclude": ["dist", "node_modules"]
 }
+

@@ -1,10 +1,15 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import NProgress from "nprogress";
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+
+import NProgress from 'nprogress';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: "/",
-    redirect: "/home",
+    path: '/',
+    redirect: '/home',
+  },
+  {
+    path: '/home',
+    component: () => import('~/views/Home/index.vue'),
   },
 ];
 
@@ -23,3 +28,4 @@ index.afterEach((to, from) => {
 });
 
 export default index;
+
