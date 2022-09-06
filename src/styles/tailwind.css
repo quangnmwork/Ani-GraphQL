@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@300&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,3 +6,14 @@
 .img-fluid {
   @apply max-w-full h-auto;
 }
+*,
+**::after,
+**::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Blinker', sans-serif;
+}
+

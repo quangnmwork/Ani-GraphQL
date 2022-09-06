@@ -46,7 +46,11 @@
 </template>
 
 <script setup lang="ts">
-const listNavigation: { link: string; name: string }[] = [
+interface navItem {
+  link: string;
+  name: string;
+}
+const listNavigation: navItem[] = [
   { link: '', name: 'Search' },
   { link: '', name: 'Social' },
   { link: '', name: 'Forum' },

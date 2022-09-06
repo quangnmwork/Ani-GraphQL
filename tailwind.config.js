@@ -11,6 +11,7 @@ module.exports = {
         mgray: '#d3d5f3',
         main: '#3577ff',
         box: 'rgb(8 150 230 / 60%)',
+        hero: '#acd5f2',
       },
       boxShadow: {
         zero: '0 0 0',
