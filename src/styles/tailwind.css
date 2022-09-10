@@ -15,8 +15,14 @@
 }
 body {
   font-family: 'Blinker', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @layer components {
+  input {
+    @apply bg-none border-none outline-none;
+  }
 }
 

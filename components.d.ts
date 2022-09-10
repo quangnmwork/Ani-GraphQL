@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     ArrowDown: typeof import('./src/icons/ArrowDown.vue')['default']
     Container: typeof import('./src/layout/Container.vue')['default']
     FilterBar: typeof import('./src/components/filter/FilterBar.vue')['default']
+    FilterIcon: typeof import('./src/icons/FilterIcon.vue')['default']
     FormInput: typeof import('./src/components/form/input/FormInput.vue')['default']
     Hero: typeof import('./src/components/hero/Hero.vue')['default']
     Navigation: typeof import('./src/components/nav/Navigation.vue')['default']
