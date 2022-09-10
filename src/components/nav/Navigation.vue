@@ -28,13 +28,13 @@
           <form name="navForm">
             <button
               type="button"
-              class="px-3 py-2"
+              class="px-3 py-2 text-lg"
             >
               Login
             </button>
             <button
               type="button"
-              class="ml-5 bg-main text-white px-3 py-2 rounded-md shadow-md hover:shadow-box hover:transition-all"
+              class="ml-5 bg-main text-white px-3 py-2 rounded-md shadow-md hover:shadow-box hover:transition-all text-lg"
             >
               Sign up
             </button>

@@ -12,17 +12,23 @@ module.exports = {
         main: '#3577ff',
         box: 'rgb(8 150 230 / 60%)',
         hero: '#acd5f2',
+        'bg-hero': '#0a1625',
+        layout: '#EDF1F5',
+        label: '#516170',
+        input: 'rgb(201,215,227)',
+        scrollbar: '#999',
       },
       boxShadow: {
         zero: '0 0 0',
       },
     },
   },
+
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
+    require('tailwind-scrollbar'),
   ],
   // daisyUI config (optional)
 };

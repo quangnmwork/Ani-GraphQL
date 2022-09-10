@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-10">
+  <div class="py-10">
     <Container>
-      <div class="bg-nav text-nav p-10 relative">
+      <div class="bg-bg-hero text-nav p-10 relative">
         <div class="font-semibold text-center">
           <h1 class="text-white text-3xl">The next-generation anime platform</h1>
           <h2 class="text-hero text-xl max-w-[370px] mx-auto mt-3">

@@ -1,6 +1,9 @@
 <template>
   <Navigation />
-  <Hero />
+  <div class="bg-layout">
+    <Hero />
+    <FilterBar />
+  </div>
 </template>
 
 <script setup lang="ts"></script>

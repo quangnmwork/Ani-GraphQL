@@ -13,12 +13,12 @@ export default defineConfig({
     Components({
       deep: true,
       dts: true,
-      extensions: ['vue'],
+
       dirs: ['src/*'],
     }),
     AutoImport({
-      imports: ['vue', 'vue/macros'],
-      dirs: ['./src/composables'],
+      imports: ['vue', 'vue/macros', '@vueuse/core'],
+      dirs: ['./src/*'],
       vueTemplate: true,
     }),
   ],
