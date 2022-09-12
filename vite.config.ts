@@ -6,6 +6,9 @@ import Components from 'unplugin-vue-components/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    port: 8000,
+  },
   plugins: [
     vue({
       reactivityTransform: true,

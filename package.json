@@ -33,6 +33,7 @@
     "vuetify": "^2.6.9"
   },
   "devDependencies": {
+    "@apollo/client": "^3.6.9",
     "@commitlint/cli": "^16.3.0",
     "@commitlint/config-conventional": "^16.2.4",
     "@tailwindcss/aspect-ratio": "^0.4.0",
@@ -43,11 +44,14 @@
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/apollo-composable": "4.0.0-alpha.19",
     "autoprefixer": "^10.4.8",
     "eslint": "^8.21.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^8.7.1",
+    "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
     "husky": "^7.0.4",
     "lint-staged": "^12.5.0",
     "pnpm": "^6.34.0",
@@ -60,6 +64,7 @@
     "unplugin-auto-import": "^0.11.2",
     "unplugin-vue-components": "^0.22.4",
     "vite": "^2.9.14",
+    "vue-apollo": "^3.1.0",
     "vue-tsc": "^0.29.8"
   },
   "lint-staged": {

@@ -6,12 +6,12 @@
     <label
       v-if="label"
       :for="uuid"
-      class="text-md text-label mb-2 font-semibold"
+      class="text-md text-label font-semibold"
     >
       {{ label }}
     </label>
     <div
-      class="grid grid-cols-[13px_minmax(0,1fr)_13px] items-center bg-white drop-shadow-lg rounded-md px-2 py-[8px] text-input gap-2 font-semibold"
+      class="grid grid-cols-[13px_minmax(0,1fr)_13px] items-center bg-white drop-shadow-lg rounded-md px-2 py-[8px] text-input gap-2 font-semibold mt-2"
       :class="props.iconPosition === 'left' ? 'flex-row' : 'flex-row-reverse'"
     >
       <label :for="uuid">

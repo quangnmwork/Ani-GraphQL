@@ -14,11 +14,13 @@
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "lib": ["DOM", "ESNext"]
+    "lib": ["DOM", "ESNext"],
+    "paths": {
+      "~/*": ["src/*"]
+    }
   },
   "include": ["src/*", "components.d.ts", "auto-imports.d.ts"],
-  "paths": {
-    "~/*": ["src/*"]
-  },
+
   "exclude": ["dist", "node_modules"]
 }
+
