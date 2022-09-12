@@ -15,11 +15,9 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "lib": ["DOM", "ESNext"],
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "paths": { "~/*": ["./src/*"] }
   },
-  "include": ["src/*", "components.d.ts", "auto-imports.d.ts"],
+  "include": ["src", "components.d.ts", "auto-imports.d.ts"],
 
   "exclude": ["dist", "node_modules"]
 }

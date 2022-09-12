@@ -51,7 +51,7 @@ import SearchIcon from '~/icons/SearchIcon.vue';
 import ArrowDown from '~/icons/ArrowDown.vue';
 import FilterIcon from '../../icons/FilterIcon.vue';
 import { useQuery } from '@vue/apollo-composable';
-import { GET_ALL_GENRES } from '../../graphQL/category';
+import { GET_ALL_GENRES } from '~/graphQL/category';
 
 const recommendList = [2023, 2021, 2022];
 const { result } = useQuery(GET_ALL_GENRES);
