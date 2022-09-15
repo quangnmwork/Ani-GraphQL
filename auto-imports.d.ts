@@ -8,7 +8,11 @@ declare global {
   const $ref: typeof import('vue/macros')['$ref']
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
+  const AIRING_STATUS: typeof import('./src/constant/shared')['AIRING_STATUS']
   const EffectScope: typeof import('vue')['EffectScope']
+  const FORMAT: typeof import('./src/constant/shared')['FORMAT']
+  const FROM_YEAR: typeof import('./src/constant/shared')['FROM_YEAR']
+  const SEASON: typeof import('./src/constant/shared')['SEASON']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const computed: typeof import('vue')['computed']
@@ -36,6 +40,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const graphQL: typeof import('./src/graphQL/index')['default']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -267,7 +272,11 @@ declare module '@vue/runtime-core' {
     readonly $ref: UnwrapRef<typeof import('vue/macros')['$ref']>
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
+    readonly AIRING_STATUS: UnwrapRef<typeof import('./src/constant/shared')['AIRING_STATUS']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly FORMAT: UnwrapRef<typeof import('./src/constant/shared')['FORMAT']>
+    readonly FROM_YEAR: UnwrapRef<typeof import('./src/constant/shared')['FROM_YEAR']>
+    readonly SEASON: UnwrapRef<typeof import('./src/constant/shared')['SEASON']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -295,6 +304,7 @@ declare module '@vue/runtime-core' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly graphQL: UnwrapRef<typeof import('./src/graphQL/index')['default']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>

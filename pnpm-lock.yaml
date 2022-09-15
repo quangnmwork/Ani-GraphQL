@@ -8,6 +8,7 @@ specifiers:
   '@tailwindcss/forms': ^0.5.2
   '@tailwindcss/line-clamp': ^0.3.1
   '@tailwindcss/typography': ^0.5.4
+  '@types/lodash': ^4.14.185
   '@types/nprogress': ^0.2.0
   '@typescript-eslint/eslint-plugin': ^5.33.0
   '@typescript-eslint/parser': ^5.33.0
@@ -23,9 +24,9 @@ specifiers:
   graphql-tag: ^2.12.6
   husky: ^7.0.4
   lint-staged: ^12.5.0
+  lodash: ^4.17.21
   nprogress: ^0.2.0
   pinia: ^2.0.18
-  pnpm: ^6.34.0
   postcss: ^8.4.16
   prettier: ^2.7.1
   prettier-plugin-tailwindcss: ^0.1.13
@@ -61,6 +62,7 @@ devDependencies:
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
   '@tailwindcss/line-clamp': 0.3.1_tailwindcss@3.1.8
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
+  '@types/lodash': 4.14.185
   '@types/nprogress': 0.2.0
   '@typescript-eslint/eslint-plugin': 5.33.0_njno5y7ry2l2lcmiu4tywxkwnq
   '@typescript-eslint/parser': 5.33.0_qugx7qdu5zevzvxaiqyxfiwquq
@@ -75,7 +77,7 @@ devDependencies:
   graphql-tag: 2.12.6_graphql@16.6.0
   husky: 7.0.4
   lint-staged: 12.5.0
-  pnpm: 6.34.0
+  lodash: 4.17.21
   postcss: 8.4.16
   prettier: 2.7.1
   prettier-plugin-tailwindcss: 0.1.13_prettier@2.7.1
@@ -483,6 +485,10 @@ packages:
 
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
+    dev: true
+
+  /@types/lodash/4.14.185:
+    resolution: {integrity: sha512-evMDG1bC4rgQg4ku9tKpuMh5iBNEwNa3tf9zRHdP1qlv+1WUg44xat4IxCE14gIpZRGUUWAx2VhItCZc25NfMA==}
     dev: true
 
   /@types/minimist/1.2.2:
@@ -2830,12 +2836,6 @@ packages:
       jsonc-parser: 3.1.0
       mlly: 0.5.14
       pathe: 0.3.5
-    dev: true
-
-  /pnpm/6.34.0:
-    resolution: {integrity: sha512-K79DAT5WtGjrUyLtxAyehtN8uy5cXkzT1v+7RIJ3gygCffoLaLlBoG5gcfjfnX7oZH5rxznv/v8tlMIMfZyzTA==}
-    engines: {node: '>=12.17'}
-    hasBin: true
     dev: true
 
   /postcss-import/14.1.0_postcss@8.4.16:
