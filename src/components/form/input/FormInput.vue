@@ -25,46 +25,15 @@
         :type="props.type || 'text'"
         class="max-w-full"
         :placeholder="props.placeholder"
-        @focus="onFocus"
       />
-    </div>
-    <div
-      class="absolute left-0 p-2 top-full bg-white mt-2 w-full rounded-md max-h-[500px] z-50 scrollbar-thin scrollbar-thumb-scrollbar scrollbar-track-gray-100"
-      :class="props.recommendList && isFocus ? 'block' : 'hidden'"
-    >
-      <div
-        v-for="(item, index) in props.recommendList"
-        :key="index"
-      >
-        <div
-          class="text-label font-bold"
-          v-if="item.title"
-        >
-          {{ item.title }}
-        </div>
-        <ul class="">
-          <li
-            v-for="(valueItem, index) in item.list"
-            :key="index"
-            class="px-2 py-1 cursor-pointer transition duration-100 rounded-sm hover:text-[#3db4f2] hover:bg-[#edf1f5] font-semibold"
-          >
-            {{
-              typeof valueItem == 'object' ? _.map(valueItem, item.keyItem).toString() : valueItem
-            }}
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ComponentInternalInstance } from 'vue';
-import { DynamicObject } from '~/constant/shared';
 import UniqueId from '~/utils/uuid';
-import _ from 'lodash';
 
-let isFocus = ref(false);
 const recommendRef = ref(null);
 
 interface InputProps {
@@ -73,20 +42,8 @@ interface InputProps {
   icon: ComponentInternalInstance;
   iconPosition?: 'left' | 'right';
   placeholder?: string;
-  recommendList: {
-    list: (string | number)[] | DynamicObject;
-    title?: string;
-    keyItem?: string;
-  }[];
 }
 
 const uuid = UniqueId().getID().toString();
 const props = defineProps<InputProps>();
-
-const onFocus = () => {
-  isFocus.value = true;
-};
-onClickOutside(recommendRef, () => {
-  isFocus.value = false;
-});
 </script>

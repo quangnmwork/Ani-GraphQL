@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     FilterBar: typeof import('./src/components/filter/FilterBar.vue')['default']
     FilterIcon: typeof import('./src/icons/FilterIcon.vue')['default']
     FormInput: typeof import('./src/components/form/input/FormInput.vue')['default']
+    FormSelect: typeof import('./src/components/form/input/FormSelect.vue')['default']
     Hero: typeof import('./src/components/hero/Hero.vue')['default']
     Navigation: typeof import('./src/components/nav/Navigation.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

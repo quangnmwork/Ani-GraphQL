@@ -20,7 +20,15 @@ export default defineConfig({
       dirs: ['src/*'],
     }),
     AutoImport({
-      imports: ['vue', 'vue/macros', '@vueuse/core'],
+      imports: [
+        'vue',
+        'vue/macros',
+        '@vueuse/core',
+        {
+          fuse: ['default', 'axios'],
+        },
+      ],
+
       dirs: ['./src/*'],
       vueTemplate: true,
     }),
