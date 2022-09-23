@@ -66,7 +66,11 @@
             />
           </div>
           <div class="flex flex-wrap">
-            <FormRange class="mt-2" />
+            <FormRange
+              class="mt-2"
+              :maxVal="2023"
+              :minVal="1970"
+            />
           </div>
         </div>
       </div>

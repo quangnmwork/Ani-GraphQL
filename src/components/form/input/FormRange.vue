@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label>Year Range</label>
+    <label>{{ props.label }}</label>
     <div
       class="h-[10px] relative w-[171px] bg-input-solid"
       name="range-slider"
@@ -9,37 +9,50 @@
         name="line"
         class="h-full bg-rail"
       >
-        <span
-          class="thumb"
-          id="thumbMin"
-          style="left: 0%"
-        ></span>
-        <span
-          class="thumb"
-          id="thumbMax"
-          style="left: 100%"
-        ></span>
+        <div class="thumb-box">
+          <span
+            class="thumb"
+            id="thumbMin"
+            style="left: 0%"
+          ></span>
+          <span class="tooltip">{{ props.maxVal }}</span>
+        </div>
+        <div>
+          <span
+            class="thumb"
+            id="thumbMax"
+            style="left: 100%"
+          />
+        </div>
         <input
           id="rangeMin"
           type="range"
-          max="100"
-          min="10"
-          step="5"
-          value="0"
+          :max="props.maxVal"
+          :min="props.minVal"
+          :step="props.step || 1"
+          :value="props.minVal"
         />
         <input
           id="rangeMax"
           type="range"
-          max="100"
-          min="10"
-          step="5"
-          value="100"
+          :max="props.maxVal"
+          :min="props.minVal"
+          :step="props.step || 1"
+          :value="props.maxVal"
         />
       </div>
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface FormRangeProps {
+  maxVal: number;
+  minVal: number;
+  step?: number;
+  label?: string;
+}
+const props = defineProps<FormRangeProps>();
+</script>
 <style scoped>
 .thumb {
   position: absolute;
@@ -49,9 +62,28 @@
   border-radius: 6px;
   outline: none;
   top: -3px;
+  width: 100%;
+  height: 100%;
+  left: -9px;
+}
+.thumb-box {
+  position: relative;
   height: 16px;
   width: 16px;
-  left: -9px;
+}
+.tooltip {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  top: -39px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+.thumb-box:hover > .tooltip {
+  visibility: visible;
 }
 input {
   -webkit-appearance: none;
@@ -65,13 +97,4 @@ input {
   opacity: 0;
   margin: 0;
 }
-/* input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  pointer-events: all;
-  border-radius: 50%;
-  cursor: pointer;
-  width: 18px;
-  height: 18px;
-} */
 </style>
