@@ -12,7 +12,7 @@
     </label>
     <div
       class="grid grid-cols-[13px_minmax(0,1fr)_13px] items-center bg-white drop-shadow-lg rounded-md px-2 py-[8px] text-input gap-2 font-semibold mt-2"
-      :class="props.iconPosition === 'left' ? 'flex-row' : 'flex-row-reverse'"
+      :class="[variantClassObject]"
     >
       <label :for="uuid">
         <component
@@ -24,6 +24,7 @@
         :id="uuid"
         type=" text"
         class="max-w-full"
+        :class="variantClassObject"
         :placeholder="props.placeholder"
         @focus="onFocus"
         v-model="inputValue"
@@ -70,18 +71,23 @@ const recommendRef = ref(null);
 interface InputProps {
   label: string;
   icon: ComponentInternalInstance;
-  iconPosition?: 'left' | 'right';
+
   placeholder?: string;
   recommendList: {
     list: (string | number | DynamicObject)[];
     title?: string;
     keyItem?: string;
   }[];
+  variant?: 'solid' | 'outline';
 }
 
 const inputValue = ref('');
 const uuid = UniqueId().getID().toString();
 const props = defineProps<InputProps>();
+
+const variantClassObject = computed(() => ({
+  'bg-input-solid': props?.variant && props.variant === 'solid',
+}));
 
 const recommendList = reactive({
   list: props.recommendList,

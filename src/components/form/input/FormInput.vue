@@ -42,6 +42,7 @@ interface InputProps {
   icon: ComponentInternalInstance;
   iconPosition?: 'left' | 'right';
   placeholder?: string;
+  variant?: 'solid' | 'outline';
 }
 
 const uuid = UniqueId().getID().toString();

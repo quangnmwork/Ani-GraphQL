@@ -5,7 +5,6 @@
         <FormInput
           label="Search"
           :icon="SearchIcon"
-          iconPosition="left"
         />
         <FormSelect
           label="Genres"
@@ -34,20 +33,42 @@
           placeholder="any"
           :recommendList="[{ list: FORMAT }]"
         />
-        <FormSelect
-          label="Airing Status"
-          :icon="ArrowDown"
-          placeholder="any"
-          :recommendList="[{ list: AIRING_STATUS }]"
-        />
       </div>
-      <div class="w-[38px]">
+      <div class="w-[38px] relative">
         <button class="bg-white p-2 font-semibold w-full flex justify-center rounded-r-md">
           <component
             :is="FilterIcon"
             class="text-input fill-current w-5 h-5 hover:text-main transition-colors inline-block"
           ></component>
         </button>
+        <div class="absolute top-full right-0 bg-white drop-shadow-md min-w-max p-3 rounded-sm">
+          <div class="flex flex-wrap gap-4">
+            <FormSelect
+              label="Airing Status"
+              :icon="ArrowDown"
+              variant="solid"
+              placeholder="any"
+              :recommendList="[{ list: AIRING_STATUS }]"
+            />
+            <FormSelect
+              label="Country"
+              :icon="ArrowDown"
+              variant="solid"
+              placeholder="any"
+              :recommendList="[{ list: AIRING_STATUS }]"
+            />
+            <FormSelect
+              label="Streaming On"
+              :icon="ArrowDown"
+              variant="solid"
+              placeholder="any"
+              :recommendList="[{ list: AIRING_STATUS }]"
+            />
+          </div>
+          <div class="flex flex-wrap">
+            <FormRange class="mt-2" />
+          </div>
+        </div>
       </div>
     </form>
   </Container>
@@ -67,7 +88,9 @@ const { result } = useQuery(GET_ALL_GENRES);
 const currentYear = new Date().getFullYear();
 const genres = reactive({ genres: [], tags: [] });
 
-const yearsCategory = Array.from({ length: currentYear - FROM_YEAR + 2 }, (_, i) => FROM_YEAR + i);
+const yearsCategory = Array.from({ length: currentYear - FROM_YEAR + 2 }, (_, i) =>
+  (FROM_YEAR + i).toString()
+);
 
 watch(result, () => {
   genres.genres = result.value.genres;
