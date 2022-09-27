@@ -7,7 +7,7 @@ import Components from 'unplugin-vue-components/vite';
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    port: 8000,
+    port: 1234,
   },
   plugins: [
     vue({
@@ -20,14 +20,7 @@ export default defineConfig({
       dirs: ['src/*'],
     }),
     AutoImport({
-      imports: [
-        'vue',
-        'vue/macros',
-        '@vueuse/core',
-        {
-          fuse: ['default', 'axios'],
-        },
-      ],
+      imports: ['vue', 'vue/macros', '@vueuse/core'],
 
       dirs: ['./src/*'],
       vueTemplate: true,
@@ -39,4 +32,3 @@ export default defineConfig({
     },
   },
 });
-

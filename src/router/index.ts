@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-
+import Home from '~/views/home/index.vue';
 import NProgress from 'nprogress';
 
 const routes: RouteRecordRaw[] = [
@@ -9,7 +9,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/home',
-    component: () => import('~/views/Home/index.vue'),
+    component: Home,
   },
 ];
 

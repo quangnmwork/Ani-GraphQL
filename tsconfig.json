@@ -15,10 +15,11 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "lib": ["DOM", "ESNext"],
-    "paths": { "~/*": ["./src/*"] }
+
+    "paths": { "~/*": ["./src/*"] },
+    "types": ["vite/client"]
   },
   "include": ["src", "components.d.ts", "auto-imports.d.ts"],
 
   "exclude": ["dist", "node_modules"]
 }
-

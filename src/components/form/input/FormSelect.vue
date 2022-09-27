@@ -6,32 +6,32 @@
     <label
       v-if="label"
       :for="uuid"
-      class="text-md text-label font-semibold"
+      class="text-md font-semibold text-label"
     >
       {{ label }}
     </label>
     <div
-      class="grid grid-cols-[13px_minmax(0,1fr)_13px] items-center bg-white drop-shadow-lg rounded-md px-2 py-[8px] text-input gap-2 font-semibold mt-2"
+      class="mt-2 grid grid-cols-[13px_minmax(0,1fr)_13px] items-center gap-2 rounded-md bg-white px-2 py-[8px] font-semibold text-input drop-shadow-lg"
       :class="[variantClassObject]"
     >
       <label :for="uuid">
         <component
           :is="props.icon"
-          class="text-input fill-current inline-block"
+          class="inline-block fill-current text-input"
         ></component>
       </label>
       <input
         :id="uuid"
+        v-model="inputValue"
         type=" text"
         class="max-w-full"
         :class="variantClassObject"
         :placeholder="props.placeholder"
         @focus="onFocus"
-        v-model="inputValue"
       />
     </div>
     <div
-      class="absolute left-0 p-2 top-full bg-white mt-2 w-full rounded-md max-h-[500px] z-50 scrollbar-thin scrollbar-thumb-scrollbar scrollbar-track-gray-100"
+      class="absolute left-0 top-full z-50 mt-2 max-h-[500px] w-full rounded-md bg-white p-2 scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-scrollbar"
       :class="props.recommendList && isFocus ? 'block' : 'hidden'"
     >
       <div
@@ -39,8 +39,8 @@
         :key="index"
       >
         <div
-          class="text-label font-bold"
           v-if="item.title"
+          class="font-bold text-label"
         >
           {{ item.title }}
         </div>
@@ -48,7 +48,7 @@
           <li
             v-for="(valueItem, index) in _.map(item.list, item.keyItem)"
             :key="index"
-            class="px-2 py-1 cursor-pointer transition duration-100 rounded-sm hover:text-[#3db4f2] hover:bg-[#edf1f5] font-semibold"
+            class="cursor-pointer rounded-sm px-2 py-1 font-semibold transition duration-100 hover:bg-[#edf1f5] hover:text-[#3db4f2]"
           >
             {{ valueItem }}
           </li>
@@ -59,19 +59,18 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentInternalInstance } from 'vue';
+// import { ComponentInternalInstance } from 'vue';
 import { DynamicObject } from '~/constant/shared';
+
 import UniqueId from '~/utils/uuid';
 import _ from 'lodash';
 import Fuse from 'fuse.js';
 
 let isFocus = ref(false);
 const recommendRef = ref(null);
-
-interface InputProps {
+interface FormSelectProps {
   label: string;
-  icon: ComponentInternalInstance;
-
+  icon: any;
   placeholder?: string;
   recommendList: {
     list: (string | number | DynamicObject)[];
@@ -83,7 +82,7 @@ interface InputProps {
 
 const inputValue = ref('');
 const uuid = UniqueId().getID().toString();
-const props = defineProps<InputProps>();
+const props = defineProps<FormSelectProps>();
 
 const variantClassObject = computed(() => ({
   'bg-input-solid': props?.variant && props.variant === 'solid',

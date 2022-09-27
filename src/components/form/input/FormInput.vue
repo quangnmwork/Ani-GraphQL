@@ -6,18 +6,18 @@
     <label
       v-if="label"
       :for="uuid"
-      class="text-md text-label font-semibold"
+      class="text-md font-semibold text-label"
     >
       {{ label }}
     </label>
     <div
-      class="grid grid-cols-[13px_minmax(0,1fr)_13px] items-center bg-white drop-shadow-lg rounded-md px-2 py-[8px] text-input gap-2 font-semibold mt-2"
+      class="mt-2 grid grid-cols-[13px_minmax(0,1fr)_13px] items-center gap-2 rounded-md bg-white px-2 py-[8px] font-semibold text-input drop-shadow-lg"
       :class="props.iconPosition === 'left' ? 'flex-row' : 'flex-row-reverse'"
     >
       <label :for="uuid">
         <component
           :is="props.icon"
-          class="text-input fill-current inline-block"
+          class="inline-block fill-current text-input"
         ></component>
       </label>
       <input
@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentInternalInstance } from 'vue';
+// import { ComponentInternalInstance } from 'vue';
 import UniqueId from '~/utils/uuid';
 
 const recommendRef = ref(null);
@@ -39,7 +39,7 @@ const recommendRef = ref(null);
 interface InputProps {
   label: string;
   type?: string;
-  icon: ComponentInternalInstance;
+  icon: any;
   iconPosition?: 'left' | 'right';
   placeholder?: string;
   variant?: 'solid' | 'outline';

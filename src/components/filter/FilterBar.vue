@@ -10,7 +10,7 @@
           label="Genres"
           :icon="ArrowDown"
           placeholder="any"
-          :recommendList="[
+          :recommend-list="[
             { title: 'Genres', list: genres.genres },
             { title: 'Tags', list: genres.tags, keyItem: 'name' },
           ]"
@@ -19,63 +19,58 @@
           label="Years"
           :icon="ArrowDown"
           placeholder="any"
-          :recommendList="[{ list: yearsCategory }]"
+          :recommend-list="[{ list: yearsCategory }]"
         />
         <FormSelect
           label="Season"
           :icon="ArrowDown"
           placeholder="any"
-          :recommendList="[{ list: SEASON }]"
+          :recommend-list="[{ list: SEASON }]"
         />
         <FormSelect
           label="Format"
           :icon="ArrowDown"
           placeholder="any"
-          :recommendList="[{ list: FORMAT }]"
+          :recommend-list="[{ list: FORMAT }]"
         />
       </div>
-      <div class="w-[38px] relative">
-        <button class="bg-white p-2 font-semibold w-full flex justify-center rounded-r-md">
+      <div class="relative w-[38px]">
+        <button class="flex w-full justify-center rounded-r-md bg-white p-2 font-semibold">
           <component
             :is="FilterIcon"
-            class="text-input fill-current w-5 h-5 hover:text-main transition-colors inline-block"
+            class="inline-block h-5 w-5 fill-current text-input transition-colors hover:text-main"
           ></component>
         </button>
-        <div class="absolute top-full right-0 bg-white drop-shadow-md min-w-max p-3 rounded-sm">
+        <div class="absolute top-full right-0 min-w-max rounded-sm bg-white p-3 drop-shadow-md">
           <div class="flex flex-wrap gap-4">
             <FormSelect
               label="Airing Status"
               :icon="ArrowDown"
               variant="solid"
               placeholder="any"
-              :recommendList="[{ list: AIRING_STATUS }]"
+              :recommend-list="[{ list: AIRING_STATUS }]"
             />
             <FormSelect
               label="Country"
               :icon="ArrowDown"
               variant="solid"
               placeholder="any"
-              :recommendList="[{ list: AIRING_STATUS }]"
+              :recommend-list="[{ list: AIRING_STATUS }]"
             />
             <FormSelect
               label="Streaming On"
               :icon="ArrowDown"
               variant="solid"
               placeholder="any"
-              :recommendList="[{ list: AIRING_STATUS }]"
+              :recommend-list="[{ list: AIRING_STATUS }]"
             />
           </div>
-          <div class="flex flex-wrap">
-            <FormRange
-              class="mt-2"
-              :maxVal="2023"
-              :minVal="1970"
-            />
-          </div>
+          <div class="flex flex-wrap"></div>
         </div>
       </div>
     </form>
   </Container>
+  <FormRange class="mt-2" />
 </template>
 
 <script setup lang="ts">
