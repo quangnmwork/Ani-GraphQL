@@ -13,6 +13,7 @@ declare global {
   const FORMAT: typeof import('./src/constant/shared')['FORMAT']
   const FROM_YEAR: typeof import('./src/constant/shared')['FROM_YEAR']
   const SEASON: typeof import('./src/constant/shared')['SEASON']
+  const YEAR_CATEGORY: typeof import('./src/constant/shared')['YEAR_CATEGORY']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const computed: typeof import('vue')['computed']
@@ -277,6 +278,7 @@ declare module '@vue/runtime-core' {
     readonly FORMAT: UnwrapRef<typeof import('./src/constant/shared')['FORMAT']>
     readonly FROM_YEAR: UnwrapRef<typeof import('./src/constant/shared')['FROM_YEAR']>
     readonly SEASON: UnwrapRef<typeof import('./src/constant/shared')['SEASON']>
+    readonly YEAR_CATEGORY: UnwrapRef<typeof import('./src/constant/shared')['YEAR_CATEGORY']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>

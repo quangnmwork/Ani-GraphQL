@@ -19,6 +19,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchIcon: typeof import('./src/icons/SearchIcon.vue')['default']
+    Slider: typeof import('./src/components/slider/Slider.vue')['default']
     Undefined: typeof import('./src/views/home/index.vue')['default']
   }
 }

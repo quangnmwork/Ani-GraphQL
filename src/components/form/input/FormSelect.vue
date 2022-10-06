@@ -44,10 +44,10 @@
         >
           {{ item.title }}
         </div>
-        <ul class="">
+        <ul>
           <li
-            v-for="(valueItem, index) in _.map(item.list, item.keyItem)"
-            :key="index"
+            v-for="(valueItem, id) in _.map(item.list, item.keyItem)"
+            :key="id"
             class="cursor-pointer rounded-sm px-2 py-1 font-semibold transition duration-100 hover:bg-[#edf1f5] hover:text-[#3db4f2]"
           >
             {{ valueItem }}

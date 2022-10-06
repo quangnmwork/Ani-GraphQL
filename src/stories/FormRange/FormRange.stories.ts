@@ -14,6 +14,9 @@ export default {
 //👇 We create a “template” of how args map to rendering
 const Template: StoryFn<typeof FormRange> = (args) => ({
   components: { FormRange },
+  data() {
+    return { value: 1 };
+  },
   setup() {
     return { args };
   },

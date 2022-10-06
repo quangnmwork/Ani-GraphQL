@@ -19,7 +19,7 @@
           label="Years"
           :icon="ArrowDown"
           placeholder="any"
-          :recommend-list="[{ list: yearsCategory }]"
+          :recommend-list="[{ list: YEAR_CATEGORY }]"
         />
         <FormSelect
           label="Season"
@@ -41,7 +41,9 @@
             class="inline-block h-5 w-5 fill-current text-input transition-colors hover:text-main"
           ></component>
         </button>
-        <div class="absolute top-full right-0 min-w-max rounded-sm bg-white p-3 drop-shadow-md">
+        <div
+          class="absolute top-full right-0 mt-5 min-w-max rounded-sm border-red-300 bg-white p-5 drop-shadow-lg"
+        >
           <div class="flex flex-wrap gap-4">
             <FormSelect
               label="Airing Status"
@@ -65,12 +67,40 @@
               :recommend-list="[{ list: AIRING_STATUS }]"
             />
           </div>
-          <div class="flex flex-wrap"></div>
+          <div class="mt-4 mr-[100px] grid grid-cols-[repeat(3,180px)] gap-10">
+            <FormRange
+              class="inline-block"
+              :is-range="true"
+              :min="+YEAR_CATEGORY[0]"
+              :max="+YEAR_CATEGORY[YEAR_CATEGORY.length - 1]"
+              :range-value="[+YEAR_CATEGORY[0], +YEAR_CATEGORY[YEAR_CATEGORY.length - 1]]"
+              label="Year Range"
+            />
+            <FormRange
+              :is-range="true"
+              :min="1"
+              :max="150"
+              :range-value="[1, 150]"
+              label="Episodes"
+            />
+            <FormRange
+              :is-range="true"
+              :min="1"
+              :max="170"
+              :range-value="[1, 170]"
+              label="Duration"
+            />
+          </div>
+          <a-checkbox
+            v-model:checked="isDoujin"
+            class="mt-3"
+          >
+            Doujin
+          </a-checkbox>
         </div>
       </div>
     </form>
   </Container>
-  <FormRange class="mt-2" />
 </template>
 
 <script setup lang="ts">
@@ -79,17 +109,14 @@ import ArrowDown from '~/icons/ArrowDown.vue';
 import FilterIcon from '~/icons/FilterIcon.vue';
 import { useQuery } from '@vue/apollo-composable';
 import { GET_ALL_GENRES } from '~/graphQL/category';
-import { FROM_YEAR, SEASON, FORMAT, AIRING_STATUS } from '~/constant/shared';
+import { YEAR_CATEGORY, SEASON, FORMAT, AIRING_STATUS } from '~/constant/shared';
 
 import _ from 'lodash';
 
 const { result } = useQuery(GET_ALL_GENRES);
-const currentYear = new Date().getFullYear();
-const genres = reactive({ genres: [], tags: [] });
+const isDoujin = ref(false);
 
-const yearsCategory = Array.from({ length: currentYear - FROM_YEAR + 2 }, (_, i) =>
-  (FROM_YEAR + i).toString()
-);
+const genres = reactive({ genres: [], tags: [] });
 
 watch(result, () => {
   genres.genres = result.value.genres;

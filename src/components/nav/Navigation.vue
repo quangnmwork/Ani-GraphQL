@@ -1,8 +1,8 @@
 <template>
   <div class="bg-nav">
     <Container>
-      <div class="flex justify-between items-center py-2 text-mgray font-semibold">
-        <div class="w-12 h-12">
+      <div class="flex items-center justify-between py-2 font-semibold text-mgray">
+        <div class="h-12 w-12">
           <img
             src="../../assets/icon.svg"
             alt="anime graphql"
@@ -10,15 +10,13 @@
           />
         </div>
         <div>
-          <ul class="list-none flex">
+          <ul class="flex list-none">
             <li
               v-for="(item, index) in listNavigation"
-              class="text-inherit p-5 text-lg"
+              :key="index"
+              class="p-5 text-lg text-inherit"
             >
-              <a
-                :href="item.link"
-                :key="index"
-              >
+              <a :href="item.link">
                 {{ item.name }}
               </a>
             </li>
@@ -34,7 +32,7 @@
             </button>
             <button
               type="button"
-              class="ml-5 bg-main text-white px-3 py-2 rounded-md shadow-md hover:shadow-box hover:transition-all text-lg"
+              class="ml-5 rounded-md bg-main px-3 py-2 text-lg text-white shadow-md hover:shadow-box hover:transition-all"
             >
               Sign up
             </button>

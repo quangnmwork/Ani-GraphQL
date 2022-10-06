@@ -1,5 +1,6 @@
 <template>
   <Navigation />
+
   <div class="bg-layout">
     <Hero />
     <FilterBar />
@@ -13,4 +14,3 @@ export default {
 };
 </script>
 <style scoped></style>
-
