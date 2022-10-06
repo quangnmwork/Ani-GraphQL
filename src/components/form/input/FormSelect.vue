@@ -14,12 +14,13 @@
       class="mt-2 grid grid-cols-[13px_minmax(0,1fr)_13px] items-center gap-2 rounded-md bg-white px-2 py-[8px] font-semibold text-input drop-shadow-lg"
       :class="[variantClassObject]"
     >
-      <label :for="uuid">
-        <component
-          :is="props.icon"
-          class="inline-block fill-current text-input"
-        ></component>
+      <label
+        :for="uuid"
+        class="fill-input"
+      >
+        <slot name="icon"></slot>
       </label>
+
       <input
         :id="uuid"
         v-model="inputValue"
@@ -70,7 +71,6 @@ let isFocus = ref(false);
 const recommendRef = ref(null);
 interface FormSelectProps {
   label: string;
-  icon: any;
   placeholder?: string;
   recommendList: {
     list: (string | number | DynamicObject)[];
@@ -128,3 +128,5 @@ onClickOutside(recommendRef, () => {
   isFocus.value = false;
 });
 </script>
+
+<style scoped></style>

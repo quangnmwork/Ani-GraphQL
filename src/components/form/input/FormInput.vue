@@ -14,11 +14,11 @@
       class="mt-2 grid grid-cols-[13px_minmax(0,1fr)_13px] items-center gap-2 rounded-md bg-white px-2 py-[8px] font-semibold text-input drop-shadow-lg"
       :class="props.iconPosition === 'left' ? 'flex-row' : 'flex-row-reverse'"
     >
-      <label :for="uuid">
-        <component
-          :is="props.icon"
-          class="inline-block fill-current text-input"
-        ></component>
+      <label
+        :for="uuid"
+        class="fill-input"
+      >
+        <slot name="icon"></slot>
       </label>
       <input
         :id="uuid"
@@ -39,7 +39,7 @@ const recommendRef = ref(null);
 interface InputProps {
   label: string;
   type?: string;
-  icon: any;
+
   iconPosition?: 'left' | 'right';
   placeholder?: string;
   variant?: 'solid' | 'outline';

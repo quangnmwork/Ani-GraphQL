@@ -15,7 +15,7 @@ module.exports = {
         'bg-hero': '#0a1625',
         layout: '#EDF1F5',
         label: '#516170',
-        input: 'rgb(201,215,227)',
+        input: '#C9D7E3',
         scrollbar: '#999',
         'input-solid': '#EDF1F5',
         rail: '#C9E8FF',
@@ -34,5 +34,4 @@ module.exports = {
   ],
   // daisyUI config (optional)
 };
-
 

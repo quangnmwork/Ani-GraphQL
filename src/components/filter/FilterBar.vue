@@ -2,37 +2,43 @@
   <Container>
     <form class="grid grid-cols-[auto_42px] items-end">
       <div class="grid grid-cols-[repeat(6,170px)] gap-[24px]">
-        <FormInput
-          label="Search"
-          :icon="SearchIcon"
-        />
+        <FormInput label="Search">
+          <template #icon><SearchIcon /></template>
+        </FormInput>
         <FormSelect
           label="Genres"
-          :icon="ArrowDown"
           placeholder="any"
           :recommend-list="[
             { title: 'Genres', list: genres.genres },
             { title: 'Tags', list: genres.tags, keyItem: 'name' },
           ]"
-        />
+        >
+          <template #icon><ArrowDown /></template>
+        </FormSelect>
         <FormSelect
           label="Years"
           :icon="ArrowDown"
           placeholder="any"
           :recommend-list="[{ list: YEAR_CATEGORY }]"
-        />
+        >
+          <template #icon><ArrowDown /></template>
+        </FormSelect>
         <FormSelect
           label="Season"
           :icon="ArrowDown"
           placeholder="any"
           :recommend-list="[{ list: SEASON }]"
-        />
+        >
+          <template #icon><ArrowDown /></template>
+        </FormSelect>
         <FormSelect
           label="Format"
           :icon="ArrowDown"
           placeholder="any"
           :recommend-list="[{ list: FORMAT }]"
-        />
+        >
+          <template #icon><ArrowDown /></template>
+        </FormSelect>
       </div>
       <div class="relative w-[38px]">
         <button class="flex w-full justify-center rounded-r-md bg-white p-2 font-semibold">
@@ -51,21 +57,27 @@
               variant="solid"
               placeholder="any"
               :recommend-list="[{ list: AIRING_STATUS }]"
-            />
+            >
+              <template #icon><ArrowDown /></template>
+            </FormSelect>
             <FormSelect
               label="Country"
               :icon="ArrowDown"
               variant="solid"
               placeholder="any"
               :recommend-list="[{ list: AIRING_STATUS }]"
-            />
+            >
+              <template #icon><ArrowDown /></template>
+            </FormSelect>
             <FormSelect
               label="Streaming On"
               :icon="ArrowDown"
               variant="solid"
               placeholder="any"
               :recommend-list="[{ list: AIRING_STATUS }]"
-            />
+            >
+              <template #icon><ArrowDown /></template>
+            </FormSelect>
           </div>
           <div class="mt-4 mr-[100px] grid grid-cols-[repeat(3,180px)] gap-10">
             <FormRange
