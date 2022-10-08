@@ -19,6 +19,7 @@ module.exports = {
         scrollbar: '#999',
         'input-solid': '#EDF1F5',
         rail: '#C9E8FF',
+        'landing-head': '#516170',
       },
       boxShadow: {
         zero: '0 0 0',

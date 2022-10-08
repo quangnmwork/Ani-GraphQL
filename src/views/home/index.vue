@@ -4,6 +4,7 @@
   <div class="bg-layout">
     <Hero />
     <FilterBar />
+    <Container class="mt-10"><LandingSection :section-name="'Trending Now'" /></Container>
   </div>
 </template>
 

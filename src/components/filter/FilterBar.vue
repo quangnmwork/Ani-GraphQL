@@ -42,13 +42,18 @@
       </div>
       <div class="relative w-[38px]">
         <button class="flex w-full justify-center rounded-r-md bg-white p-2 font-semibold">
-          <component
-            :is="FilterIcon"
+          <FilterIcon
             class="inline-block h-5 w-5 fill-current text-input transition-colors hover:text-main"
-          ></component>
+            @click.prevent="
+              () => {
+                isDropdown = !isDropdown;
+              }
+            "
+          />
         </button>
         <div
-          class="absolute top-full right-0 mt-5 min-w-max rounded-sm border-red-300 bg-white p-5 drop-shadow-lg"
+          class="absolute top-full right-0 mt-5 min-w-max rounded-sm border-red-300 bg-white p-5 drop-shadow-lg transition delay-200"
+          :class="isDropdown ? 'block' : 'hidden'"
         >
           <div class="flex flex-wrap gap-4">
             <FormSelect
@@ -127,6 +132,7 @@ import _ from 'lodash';
 
 const { result } = useQuery(GET_ALL_GENRES);
 const isDoujin = ref(false);
+const isDropdown = ref(false);
 
 const genres = reactive({ genres: [], tags: [] });
 

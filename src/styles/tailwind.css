@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .img-fluid {
-  @apply max-w-full h-auto;
+  @apply h-auto max-w-full;
 }
 *,
 **::after,
@@ -14,7 +14,8 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'Blinker', sans-serif;
+  font-family: 'Overpass', sans-serif;
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -22,7 +23,7 @@ body {
 
 @layer components {
   input {
-    @apply bg-none border-none outline-none;
+    @apply border-none bg-none outline-none;
   }
 }
 
