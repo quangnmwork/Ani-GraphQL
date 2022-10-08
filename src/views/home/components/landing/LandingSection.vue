@@ -12,8 +12,17 @@
   </div>
 </template>
 <script setup lang="ts">
+import { useQuery } from '@vue/apollo-composable';
+import { GET_OVERVIEW } from '~/graphQL/overview';
+
 interface landingSectionProps {
   sectionName: string;
 }
 const props = defineProps<landingSectionProps>();
+
+const res = useQuery(GET_OVERVIEW);
+
+watchEffect(() => {
+  console.log(res.result.value);
+});
 </script>
