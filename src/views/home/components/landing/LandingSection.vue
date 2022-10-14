@@ -9,11 +9,12 @@
       </h3>
       <span class="text-[1rem] text-landing-head">View all</span>
     </div>
-    <div>
+    <div class="grid grid-cols-[repeat(auto-fill,185px)] justify-between">
       <AniCard
         v-for="(ani, index) in aniList.values"
         :key="index"
         :ani="ani"
+        :tooltip="index == aniList.values.length - 1 ? 'left' : 'right'"
       />
     </div>
   </div>
