@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-
 export const MEDIA_FRAGMENT = gql`
   fragment media on Media {
     id

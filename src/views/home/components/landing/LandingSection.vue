@@ -9,20 +9,31 @@
       </h3>
       <span class="text-[1rem] text-landing-head">View all</span>
     </div>
+    <div>
+      <AniCard
+        v-for="(ani, index) in aniList.values"
+        :key="index"
+        :ani="ani"
+      />
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import { useQuery } from '@vue/apollo-composable';
-import { GET_OVERVIEW } from '~/graphQL/overview';
+
+import { GET_OVER_VIEW } from '~/graphQL/overview/Overview';
+import { Media } from '~/model/ani';
 
 interface landingSectionProps {
   sectionName: string;
+  // aniList: Media[];
 }
 const props = defineProps<landingSectionProps>();
+const aniList = reactive<Media[]>([]);
 
-const res = useQuery(GET_OVERVIEW);
+const { onResult } = useQuery(GET_OVER_VIEW);
 
-watchEffect(() => {
-  console.log(res.result.value);
+onResult((queryResult) => {
+  aniList.values = queryResult.data.trending.media;
 });
 </script>
