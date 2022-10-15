@@ -9,14 +9,13 @@
     <a class="ani-title mt-2 block font-semibold">{{ props.ani.title.userPreferred }}</a>
     <div
       class="ani-info pointer-events-none invisible absolute top-[5px] left-full z-50 ml-[18px] w-full min-w-[290px] overflow-hidden rounded-sm bg-[#fbfbfb] p-4 opacity-0"
-      :class="props.tooltip && props.tooltip == 'left' ? 'ani-info__last' : ''"
     >
       <div
         name="header"
         class="flex items-center justify-between"
       >
         <a class="text-lg font-semibold text-ani-card">
-          Ep {{ props.ani.nextAiringEpisode.episode }} airing in
+          Ep {{ props.ani.nextAiringEpisode?.episode }} airing in
         </a>
         <div class="flex items-center gap-3">
           <span
@@ -57,11 +56,10 @@ import { Media } from '~/model/ani';
 import { getEmotionIconByScore } from '~/utils/getIcon';
 interface AniCardProps {
   ani: Media;
-  tooltip?: 'left' | 'right';
 }
 const props = defineProps<AniCardProps>();
 
-const { icon, color } = getEmotionIconByScore(props.ani.averageScore);
+const { icon } = getEmotionIconByScore(props.ani.averageScore);
 </script>
 <style scoped>
 .ani-container:hover .ani-title {
@@ -74,8 +72,8 @@ const { icon, color } = getEmotionIconByScore(props.ani.averageScore);
 .ani-genres {
   background-color: v-bind('props.ani.coverImage.color');
 }
-.ani-score {
-  fill: v-bind('color');
+.ani-score svg {
+  fill: red !important;
 }
 
 .ani-info__last {

@@ -14,7 +14,6 @@
         v-for="(ani, index) in aniList.values"
         :key="index"
         :ani="ani"
-        :tooltip="index == aniList.values.length - 1 ? 'left' : 'right'"
       />
     </div>
   </div>
@@ -29,6 +28,7 @@ interface landingSectionProps {
   sectionName: string;
   // aniList: Media[];
 }
+
 const props = defineProps<landingSectionProps>();
 const aniList = reactive<Media[]>([]);
 

@@ -7,9 +7,14 @@ export const getEmotionIconByScore = (score: number) => {
     return { icon: SmileIcon, color: '#7bd555' };
   } else if (score >= 50) {
     return { icon: NeutraIcon, color: '#F2737B' };
-  }
-  return {
-    icon: SadIcon,
-    color: '#d4000d',
-  };
+  } else if (score < 50)
+    return {
+      icon: SadIcon,
+      color: '#d4000d',
+    };
+  else
+    return {
+      icon: undefined,
+      color: undefined,
+    };
 };
