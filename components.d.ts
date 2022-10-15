@@ -18,10 +18,14 @@ declare module '@vue/runtime-core' {
     Hero: typeof import('./src/views/home/components/hero/Hero.vue')['default']
     LandingSection: typeof import('./src/views/home/components/landing/LandingSection.vue')['default']
     Navigation: typeof import('./src/components/nav/Navigation.vue')['default']
+    NeutraIcon: typeof import('./src/icons/NeutraIcon.vue')['default']
+    Neutralcon: typeof import('./src/icons/Neutralcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SadIcon: typeof import('./src/icons/SadIcon.vue')['default']
     SearchIcon: typeof import('./src/icons/SearchIcon.vue')['default']
     Slider: typeof import('./src/components/slider/Slider.vue')['default']
+    SmileIcon: typeof import('./src/icons/SmileIcon.vue')['default']
     Undefined: typeof import('./src/views/home/index.vue')['default']
   }
 }
