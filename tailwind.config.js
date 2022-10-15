@@ -20,6 +20,7 @@ module.exports = {
         'input-solid': '#EDF1F5',
         rail: '#C9E8FF',
         'landing-head': '#516170',
+        'ani-card': '#647380',
       },
       boxShadow: {
         zero: '0 0 0',

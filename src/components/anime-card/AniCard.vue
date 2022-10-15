@@ -1,9 +1,9 @@
 <template>
   <div class="ani-container relative cursor-pointer">
-    <div class="h-[265px]">
+    <div class="h-[265px] w-full">
       <img
         :src="props.ani.coverImage.extraLarge"
-        class="h-full max-w-full rounded-lg object-cover"
+        class="h-full w-full rounded-sm object-cover"
       />
     </div>
     <a class="ani-title mt-2 block font-semibold">{{ props.ani.title.userPreferred }}</a>
@@ -11,29 +11,76 @@
       class="ani-info pointer-events-none invisible absolute top-[5px] left-full z-50 ml-[18px] w-full min-w-[290px] overflow-hidden rounded-sm bg-[#fbfbfb] p-4 opacity-0"
       :class="props.tooltip && props.tooltip == 'left' ? 'ani-info__last' : ''"
     >
-      <div name="header">Header</div>
-      <div name="studio">Studio</div>
-      <div name="info">Info</div>
-      <div name="genres">Genre</div>
+      <div
+        name="header"
+        class="flex items-center justify-between"
+      >
+        <a class="text-lg font-semibold text-ani-card">
+          Ep {{ props.ani.nextAiringEpisode.episode }} airing in
+        </a>
+        <div class="flex items-center gap-3">
+          <span
+            name="average-score"
+            class="ani-score"
+          >
+            <component :is="icon" />
+          </span>
+          <span class="text-md font-semibold">{{ props.ani.averageScore }}%</span>
+        </div>
+      </div>
+      <div
+        name="studio"
+        class="text-md ani-studio mt-4 font-semibold"
+      >
+        <span>{{ props.ani.studios.edges[0].node.name }}</span>
+        <span class="text-md mb-4 block font-semibold text-ani-card">{{ props.ani.format }}</span>
+      </div>
+
+      <div
+        name="genres"
+        class="flex h-[20px] flex-wrap overflow-hidden"
+      >
+        <span
+          v-for="(item, index) in props.ani.genres"
+          :key="index"
+          class="ani-genres mr-2 rounded-[10px] px-[12px] text-sm lowercase text-white"
+        >
+          {{ item }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { Media } from '~/model/ani';
+import { getEmotionIconByScore } from '~/utils/getIcon';
 interface AniCardProps {
   ani: Media;
   tooltip?: 'left' | 'right';
 }
 const props = defineProps<AniCardProps>();
+
+const { icon, color } = getEmotionIconByScore(props.ani.averageScore);
 </script>
 <style scoped>
 .ani-container:hover .ani-title {
   color: v-bind('props.ani.coverImage.color');
 }
+.ani-studio {
+  color: v-bind('props.ani.coverImage.color');
+}
+
+.ani-genres {
+  background-color: v-bind('props.ani.coverImage.color');
+}
+.ani-score {
+  fill: v-bind('color');
+}
+
 .ani-info__last {
-  margin-right: 18px;
-  left: 100%;
+  margin-right: 18px !important;
+  left: 100% !important;
 }
 .ani-info {
   transition: all 0.2s linear;
