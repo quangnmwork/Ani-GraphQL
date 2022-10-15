@@ -15,7 +15,7 @@
         class="flex items-center justify-between"
       >
         <a class="text-lg font-semibold text-ani-card">
-          Ep {{ props.ani.nextAiringEpisode?.episode }} airing in
+          {{ timeEpisode }}
         </a>
         <div class="flex items-center gap-3">
           <span
@@ -54,12 +54,20 @@
 <script lang="ts" setup>
 import { Media } from '~/model/ani';
 import { getEmotionIconByScore } from '~/utils/getIcon';
+import { getNextEpisode } from '~/utils/utils';
 interface AniCardProps {
   ani: Media;
 }
 const props = defineProps<AniCardProps>();
 
 const { icon } = getEmotionIconByScore(props.ani.averageScore);
+
+const timeEpisode = computed(() => {
+  if (props.ani.nextAiringEpisode) {
+    const nextEpisode = getNextEpisode(props.ani.nextAiringEpisode.timeUntilAiring);
+    if (nextEpisode) return `Ep ${props.ani.nextAiringEpisode.episode} airing in ${nextEpisode}`;
+  } else return `${props.ani.season} ${props.ani.seasonYear}`;
+});
 </script>
 <style scoped>
 .ani-container:hover .ani-title {
