@@ -27,5 +27,8 @@ declare module '@vue/runtime-core' {
     Slider: typeof import('./src/components/slider/Slider.vue')['default']
     SmileIcon: typeof import('./src/icons/SmileIcon.vue')['default']
     Undefined: typeof import('./src/views/home/index.vue')['default']
+    UseElementInView: typeof import('./src/composables/useElementInView.vue')['default']
+    UseEventListener: typeof import('./src/composables/useEventListener.vue')['default']
+    UseInViewport: typeof import('./src/composables/useInViewport.vue')['default']
   }
 }

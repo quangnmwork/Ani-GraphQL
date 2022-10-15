@@ -8,7 +8,8 @@
     </div>
     <a class="ani-title mt-2 block font-semibold">{{ props.ani.title.userPreferred }}</a>
     <div
-      class="ani-info pointer-events-none invisible absolute top-[5px] left-full z-50 ml-[18px] w-full min-w-[290px] overflow-hidden rounded-sm bg-[#fbfbfb] p-4 opacity-0"
+      ref="inViewport"
+      class="ani-info pointer-events-none invisible absolute top-[5px] left-full z-50 w-full min-w-[290px] overflow-hidden rounded-sm bg-[#fbfbfb] p-4 opacity-0"
     >
       <div
         name="header"
@@ -29,10 +30,18 @@
       </div>
       <div
         name="studio"
-        class="text-md ani-studio mt-4 font-semibold"
+        class="ani-studio mt-4 font-semibold"
       >
         <span>{{ props.ani.studios.edges[0].node.name }}</span>
-        <span class="text-md mb-4 block font-semibold text-ani-card">{{ props.ani.format }}</span>
+        <div class="text-md mb-4 block font-semibold text-ani-card">
+          <span class="mr-1">{{ props.ani.format }} Show</span>
+          <span
+            v-if="props.ani.episodes"
+            class="before:ml-1 before:h-[16px] before:w-[16px] before:rounded-full before:bg-ani-card before:font-semibold before:content-['']"
+          >
+            {{ props.ani.episodes }} episodes
+          </span>
+        </div>
       </div>
 
       <div
@@ -59,7 +68,20 @@ interface AniCardProps {
   ani: Media;
 }
 const props = defineProps<AniCardProps>();
+const inViewport = ref<HTMLDivElement>();
 
+onMounted(() => {
+  if (inViewport.value) {
+    if (inViewport.value?.getBoundingClientRect().right > window.innerWidth) {
+      inViewport.value?.classList.remove('left-full');
+      inViewport.value?.classList.add('mr-[18px]');
+      inViewport.value?.classList.add('right-full');
+    } else {
+      inViewport.value?.classList.add('ml-[18px]');
+      inViewport.value?.classList.add('left-full');
+    }
+  }
+});
 const { icon } = getEmotionIconByScore(props.ani.averageScore);
 
 const timeEpisode = computed(() => {
@@ -86,7 +108,7 @@ const timeEpisode = computed(() => {
 
 .ani-info__last {
   margin-right: 18px !important;
-  left: 100% !important;
+  right: 100% !important;
 }
 .ani-info {
   transition: all 0.2s linear;
