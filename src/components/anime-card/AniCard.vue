@@ -2,7 +2,7 @@
   <div class="ani-container relative cursor-pointer">
     <div class="h-[265px] w-full">
       <img
-        :src="props.ani.coverImage.extraLarge"
+        :src="props.ani.coverImage.extraLarge || props.ani.coverImage.large"
         class="h-full w-full rounded-sm object-cover"
       />
     </div>
@@ -18,12 +18,18 @@
         <a class="text-lg font-semibold text-ani-card">
           {{ timeEpisode }}
         </a>
-        <div class="flex items-center gap-3">
+        <div
+          v-if="props.ani.averageScore"
+          class="flex items-center gap-3"
+        >
           <span
             name="average-score"
             class="ani-score"
           >
-            <component :is="icon" />
+            <component
+              :is="icon"
+              v-if="icon"
+            />
           </span>
           <span class="text-md font-semibold">{{ props.ani.averageScore }}%</span>
         </div>
@@ -32,9 +38,14 @@
         name="studio"
         class="ani-studio mt-4 font-semibold"
       >
-        <span>{{ props.ani.studios.edges[0].node.name }}</span>
+        <span>{{ props.ani.studios.edges[0]?.node.name }}</span>
         <div class="text-md mb-4 block font-semibold text-ani-card">
-          <span class="mr-1">{{ props.ani.format }} Show</span>
+          <span
+            v-if="props.ani.format"
+            class="mr-1"
+          >
+            {{ props.ani.format }} Show
+          </span>
           <span
             v-if="props.ani.episodes"
             class="before:ml-1 before:h-[16px] before:w-[16px] before:rounded-full before:bg-ani-card before:font-semibold before:content-['']"
@@ -45,6 +56,7 @@
       </div>
 
       <div
+        v-if="props.ani.genres"
         name="genres"
         class="flex h-[20px] flex-wrap overflow-hidden"
       >
