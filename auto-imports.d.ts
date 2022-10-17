@@ -43,6 +43,7 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEmotionIconByScore: typeof import('./src/utils/getIcon')['getEmotionIconByScore']
   const getNextEpisode: typeof import('./src/utils/utils')['getNextEpisode']
+  const getSeason: typeof import('./src/utils/utils')['getSeason']
   const graphQL: typeof import('./src/graphQL/index')['default']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
@@ -310,6 +311,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEmotionIconByScore: UnwrapRef<typeof import('./src/utils/getIcon')['getEmotionIconByScore']>
     readonly getNextEpisode: UnwrapRef<typeof import('./src/utils/utils')['getNextEpisode']>
+    readonly getSeason: UnwrapRef<typeof import('./src/utils/utils')['getSeason']>
     readonly graphQL: UnwrapRef<typeof import('./src/graphQL/index')['default']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>

@@ -83,7 +83,7 @@ const props = defineProps<AniCardProps>();
 const inViewport = ref<HTMLDivElement>();
 
 onMounted(() => {
-  if (inViewport.value) {
+  const updateUI =() => {if (inViewport.value) {
     if (inViewport.value?.getBoundingClientRect().right > window.innerWidth) {
       inViewport.value?.classList.remove('left-full');
       inViewport.value?.classList.add('mr-[18px]');
@@ -92,7 +92,9 @@ onMounted(() => {
       inViewport.value?.classList.add('ml-[18px]');
       inViewport.value?.classList.add('left-full');
     }
-  }
+  }}
+  updateUI()
+  window.addEventListener('resize',updateUI)
 });
 const { icon } = getEmotionIconByScore(props.ani.averageScore);
 
