@@ -12,12 +12,20 @@
     <div
       class="grid grid-cols-[repeat(auto-fill,185px)] justify-between 2xl:gap-y-[10px] 2xl:gap-x-[10px]"
     >
-      <AniCard
-        v-for="(ani, index) in aniList"
-        :key="index"
-        :ani="ani"
-        :is-loading="props.isLoading"
-      />
+      <template v-if="props.isLoading">
+        <AniCard
+          v-for="(ani, index) in new Array(6).fill(undefined)"
+          :key="index"
+          :ani="ani"
+        />
+      </template>
+      <template v-if="!props.isLoading">
+        <AniCard
+          v-for="(ani, index) in props.aniList"
+          :key="index"
+          :ani="ani"
+        />
+      </template>
     </div>
   </div>
 </template>

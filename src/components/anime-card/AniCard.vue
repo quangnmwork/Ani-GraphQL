@@ -1,6 +1,17 @@
 <template>
   <div class="ani-container relative cursor-pointer">
-    <a-skeleton :loading="props.isLoading">
+    <template v-if="!props.ani">
+      <Skeleton
+        width="100%"
+        :height="256"
+      />
+      <Skeleton
+        width="100%"
+        class="mt-5"
+        :height="15"
+      />
+    </template>
+    <template v-if="props.ani">
       <div
         class="h-[265px] w-full"
         :class="`bg-${props.ani.coverImage.color}`"
@@ -10,72 +21,72 @@
           class="h-full w-full rounded-sm object-cover"
         />
       </div>
-    </a-skeleton>
-    <a-skeleton :loading="props.isLoading">
-      <a class="ani-title mt-2 block font-semibold">{{ props.ani.title.userPreferred }}</a>
-    </a-skeleton>
-    <div
-      ref="inViewport"
-      class="ani-info pointer-events-none invisible absolute left-full top-[5px] z-50 w-full min-w-[290px] overflow-hidden rounded-sm bg-[#fbfbfb] p-4 opacity-0"
-    >
+      <a class="ani-title mt-2 block font-semibold">
+        {{ props.ani.title.userPreferred }}
+      </a>
       <div
-        name="header"
-        class="flex items-center justify-between"
+        ref="inViewport"
+        class="ani-info pointer-events-none invisible absolute left-full top-[5px] z-50 w-full min-w-[290px] overflow-hidden rounded-sm bg-[#fbfbfb] p-4 opacity-0"
       >
-        <a class="text-lg font-semibold text-ani-card">
-          {{ timeEpisode }}
-        </a>
         <div
-          v-if="props.ani.averageScore"
-          class="flex items-center gap-3"
+          name="header"
+          class="flex items-center justify-between"
         >
-          <span
-            name="average-score"
-            class="ani-score"
+          <a class="text-lg font-semibold text-ani-card">
+            {{ timeEpisode }}
+          </a>
+          <div
+            v-if="props.ani.averageScore"
+            class="flex items-center gap-3"
           >
-            <component
-              :is="icon"
-              v-if="icon"
-            />
-          </span>
-          <span class="text-md font-semibold">{{ props.ani.averageScore }}%</span>
+            <span
+              name="average-score"
+              class="ani-score"
+            >
+              <component
+                :is="icon"
+                v-if="icon"
+              />
+            </span>
+            <span class="text-md font-semibold">{{ props.ani.averageScore }}%</span>
+          </div>
         </div>
-      </div>
-      <div
-        name="studio"
-        class="ani-studio mt-4 font-semibold"
-      >
-        <span>{{ props.ani.studios.edges[0]?.node.name }}</span>
-        <div class="text-md mb-4 block font-semibold text-ani-card">
-          <span
-            v-if="props.ani.format"
-            class="mr-1"
-          >
-            {{ props.ani.format }} Show
-          </span>
-          <span
-            v-if="props.ani.episodes"
-            class="before:ml-1 before:h-[16px] before:w-[16px] before:rounded-full before:bg-ani-card before:font-semibold before:content-['']"
-          >
-            {{ props.ani.episodes }} episodes
-          </span>
+        <div
+          name="studio"
+          class="ani-studio mt-4 font-semibold"
+        >
+          <span>{{ props.ani.studios.edges[0]?.node.name }}</span>
+          <div class="text-md mb-4 block font-semibold text-ani-card">
+            <span
+              v-if="props.ani.format"
+              class="mr-1"
+            >
+              {{ props.ani.format }} Show
+            </span>
+            <span
+              v-if="props.ani.episodes"
+              class="before:ml-1 before:h-[16px] before:w-[16px] before:rounded-full before:bg-ani-card before:font-semibold before:content-['']"
+            >
+              {{ props.ani.episodes }} episodes
+            </span>
+          </div>
         </div>
-      </div>
 
-      <div
-        v-if="props.ani.genres"
-        name="genres"
-        class="flex h-[20px] flex-wrap overflow-hidden"
-      >
-        <span
-          v-for="(item, index) in props.ani.genres"
-          :key="index"
-          class="ani-genres mr-2 rounded-[10px] px-[12px] text-sm lowercase text-white"
+        <div
+          v-if="props.ani.genres"
+          name="genres"
+          class="flex h-[20px] flex-wrap overflow-hidden"
         >
-          {{ item }}
-        </span>
+          <span
+            v-for="(item, index) in props.ani.genres"
+            :key="index"
+            class="ani-genres mr-2 rounded-[10px] px-[12px] text-sm lowercase text-white"
+          >
+            {{ item }}
+          </span>
+        </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -84,19 +95,13 @@ import { Media } from '~/model/ani';
 import { getEmotionIconByScore } from '~/utils/getIcon';
 import { getNextEpisode } from '~/utils/utils';
 interface AniCardProps {
-  ani: Media;
-  isLoading: boolean;
+  ani: Media | undefined;
 }
 
 const props = defineProps<AniCardProps>();
 const inViewport = ref<HTMLDivElement>();
 
-watchEffect(() => {
-  console.log('Card', props.isLoading);
-});
-
 onMounted(() => {
-  console.log('Mount');
   const updateUI = () => {
     if (inViewport.value) {
       if (inViewport.value?.getBoundingClientRect().right > window.innerWidth) {
@@ -116,20 +121,17 @@ onMounted(() => {
   updateUI();
   window.addEventListener('resize', updateUI);
 });
-onBeforeUpdate(() => {
-  console.log('Before uppdate');
-});
-onUpdated(() => {
-  console.log('uppdated');
-});
 
-const { icon } = getEmotionIconByScore(props.ani.averageScore);
+const { icon } = getEmotionIconByScore(props.ani ? props.ani.averageScore : 0);
 
 const timeEpisode = computed(() => {
-  if (props.ani.nextAiringEpisode) {
-    const nextEpisode = getNextEpisode(props.ani.nextAiringEpisode.timeUntilAiring);
-    if (nextEpisode) return `Ep ${props.ani.nextAiringEpisode.episode} airing in ${nextEpisode}`;
-  } else return `${props.ani.season} ${props.ani.seasonYear}`;
+  if (props.ani) {
+    if (props.ani.nextAiringEpisode) {
+      const nextEpisode = getNextEpisode(props.ani.nextAiringEpisode.timeUntilAiring);
+      if (nextEpisode) return `Ep ${props.ani.nextAiringEpisode.episode} airing in ${nextEpisode}`;
+    } else return `${props.ani.season} ${props.ani.seasonYear}`;
+  }
+  return '';
 });
 </script>
 <style scoped>
@@ -137,14 +139,14 @@ const timeEpisode = computed(() => {
   grid-template-rows: min-content auto;
 }
 .ani-container:hover .ani-title {
-  color: v-bind('props.ani.coverImage.color');
+  color: v-bind('props.ani?.coverImage.color');
 }
 .ani-studio {
-  color: v-bind('props.ani.coverImage.color');
+  color: v-bind('props.ani?.coverImage.color');
 }
 
 .ani-genres {
-  background-color: v-bind('props.ani.coverImage.color');
+  background-color: v-bind('props.ani?.coverImage.color');
 }
 .ani-score svg {
   fill: red !important;

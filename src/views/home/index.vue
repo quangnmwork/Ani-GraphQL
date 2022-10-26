@@ -7,7 +7,7 @@
     <Container class="mt-10">
       <LandingSection
         :section-name="'Trending Now'"
-        :ani-list="landingAniList.trending.media || []"
+        :ani-list="landingAniList.trending.media"
         :is-loading="loading"
       />
 
