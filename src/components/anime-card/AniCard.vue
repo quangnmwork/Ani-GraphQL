@@ -1,15 +1,22 @@
 <template>
   <div class="ani-container relative cursor-pointer">
-    <div class="h-[265px] w-full">
-      <img
-        :src="props.ani.coverImage.extraLarge || props.ani.coverImage.large"
-        class="h-full w-full rounded-sm object-cover"
-      />
-    </div>
-    <a class="ani-title mt-2 block font-semibold">{{ props.ani.title.userPreferred }}</a>
+    <a-skeleton :loading="props.isLoading">
+      <div
+        class="h-[265px] w-full"
+        :class="`bg-${props.ani.coverImage.color}`"
+      >
+        <img
+          :src="props.ani.coverImage.extraLarge || props.ani.coverImage.large"
+          class="h-full w-full rounded-sm object-cover"
+        />
+      </div>
+    </a-skeleton>
+    <a-skeleton :loading="props.isLoading">
+      <a class="ani-title mt-2 block font-semibold">{{ props.ani.title.userPreferred }}</a>
+    </a-skeleton>
     <div
       ref="inViewport"
-      class="ani-info pointer-events-none invisible absolute top-[5px] left-full z-50 w-full min-w-[290px] overflow-hidden rounded-sm bg-[#fbfbfb] p-4 opacity-0"
+      class="ani-info pointer-events-none invisible absolute left-full top-[5px] z-50 w-full min-w-[290px] overflow-hidden rounded-sm bg-[#fbfbfb] p-4 opacity-0"
     >
       <div
         name="header"
@@ -78,24 +85,44 @@ import { getEmotionIconByScore } from '~/utils/getIcon';
 import { getNextEpisode } from '~/utils/utils';
 interface AniCardProps {
   ani: Media;
+  isLoading: boolean;
 }
+
 const props = defineProps<AniCardProps>();
 const inViewport = ref<HTMLDivElement>();
 
-onMounted(() => {
-  const updateUI =() => {if (inViewport.value) {
-    if (inViewport.value?.getBoundingClientRect().right > window.innerWidth) {
-      inViewport.value?.classList.remove('left-full');
-      inViewport.value?.classList.add('mr-[18px]');
-      inViewport.value?.classList.add('right-full');
-    } else {
-      inViewport.value?.classList.add('ml-[18px]');
-      inViewport.value?.classList.add('left-full');
-    }
-  }}
-  updateUI()
-  window.addEventListener('resize',updateUI)
+watchEffect(() => {
+  console.log('Card', props.isLoading);
 });
+
+onMounted(() => {
+  console.log('Mount');
+  const updateUI = () => {
+    if (inViewport.value) {
+      if (inViewport.value?.getBoundingClientRect().right > window.innerWidth) {
+        inViewport.value?.classList.remove('left-full');
+        inViewport.value?.classList.remove('ml-[18px]');
+        inViewport.value?.classList.add('mr-[18px]');
+        inViewport.value?.classList.add('right-full');
+      } else {
+        inViewport.value?.classList.remove('right-full');
+        inViewport.value?.classList.remove('mr-[18px]');
+        inViewport.value?.classList.add('ml-[18px]');
+        inViewport.value?.classList.add('left-full');
+      }
+    }
+  };
+
+  updateUI();
+  window.addEventListener('resize', updateUI);
+});
+onBeforeUpdate(() => {
+  console.log('Before uppdate');
+});
+onUpdated(() => {
+  console.log('uppdated');
+});
+
 const { icon } = getEmotionIconByScore(props.ani.averageScore);
 
 const timeEpisode = computed(() => {
@@ -106,6 +133,9 @@ const timeEpisode = computed(() => {
 });
 </script>
 <style scoped>
+.ani-container {
+  grid-template-rows: min-content auto;
+}
 .ani-container:hover .ani-title {
   color: v-bind('props.ani.coverImage.color');
 }
