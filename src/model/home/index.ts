@@ -5,4 +5,5 @@ export interface HomeAniProps {
   popularSeason: { media: Media[] };
   nextSeason: { media: Media[] };
   popularAllTime: { media: Media[] };
+  topAnime: { media: [] };
 }

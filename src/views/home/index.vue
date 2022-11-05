@@ -11,18 +11,22 @@
         :is-loading="loading"
       />
 
-      <!-- <LandingSection
+      <LandingSection
         :section-name="'Popular this season'"
         :ani-list="landingAniList.popularSeason.media"
+        :is-loading="loading"
       />
       <LandingSection
         :section-name="'Upcoming next season'"
         :ani-list="landingAniList.nextSeason.media"
+        :is-loading="loading"
       />
       <LandingSection
         :section-name="'All Time Popular'"
         :ani-list="landingAniList.popularAllTime.media"
-      /> -->
+        :is-loading="loading"
+      />
+      <Ranking :ani-list="landingAniList.topAnime.media" />
     </Container>
   </div>
 </template>
@@ -39,6 +43,7 @@ const landingAniList = reactive<HomeAniProps>({
   popularSeason: { media: [] },
   nextSeason: { media: [] },
   popularAllTime: { media: [] },
+  topAnime: { media: [] },
 });
 
 const currentDay = new Date();
@@ -50,15 +55,13 @@ const { loading, result } = useQuery(GET_OVER_VIEW, {
   nextYear: currentDay.getUTCFullYear() + 1,
 });
 
-watchEffect(() => {
-  console.log('Parent', loading.value);
-});
 watch(result, () => {
   const resData: HomeAniProps = result.value;
 
   for (const [key, value] of Object.entries(resData)) {
     landingAniList[key as keyof HomeAniProps] = value;
   }
+  console.log(landingAniList.topAnime.media);
 });
 </script>
 <script lang="ts">

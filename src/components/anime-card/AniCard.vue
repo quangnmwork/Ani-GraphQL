@@ -4,11 +4,13 @@
       <Skeleton
         width="100%"
         :height="256"
+        :shape="'square'"
       />
       <Skeleton
         width="100%"
         class="mt-5"
         :height="15"
+        :shape="'square'"
       />
     </template>
     <template v-if="props.ani">
@@ -17,7 +19,7 @@
         :class="`bg-${props.ani.coverImage.color}`"
       >
         <img
-          :src="props.ani.coverImage.extraLarge || props.ani.coverImage.large"
+          :src="props.ani.coverImage.extraLarge"
           class="h-full w-full rounded-sm object-cover"
         />
       </div>
