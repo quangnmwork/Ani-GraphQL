@@ -142,7 +142,7 @@
   font-family: Overpass, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: 600;
-  margin-top: 20px;
+
   min-height: 100px;
   padding: 50px 30px;
   text-align: left;
@@ -180,6 +180,7 @@ h2 {
   padding-left: 20px;
   padding-right: 20px;
   width: 100%;
+  height: 100%;
 }
 .theme-preview {
   border-radius: 3px;
