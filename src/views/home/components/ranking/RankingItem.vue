@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h[80px] relative inline-grid grid-cols-[48px_auto] rounded-[4px] bg-ani-background-100 p-[10px]"
+    class="min-h[80px] relative ml-[80px] inline-grid cursor-pointer grid-cols-[48px_auto] rounded-[4px] bg-ani-background-100 p-[10px] shadow-md"
   >
     <div
       class="absolute left-[-70px] top-[18px] flex h-[50px] w-[50px] text-[24px] leading-none text-ani-gray-600"
