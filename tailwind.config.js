@@ -106,6 +106,7 @@ module.exports = {
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     require('tailwind-scrollbar'),
+    require('daisyui'),
   ],
   // daisyUI config (optional)
 };

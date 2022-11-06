@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Container: typeof import('./src/layout/Container.vue')['default']
     FilterBar: typeof import('./src/components/filter/FilterBar.vue')['default']
     FilterIcon: typeof import('./src/icons/FilterIcon.vue')['default']
+    Footer: typeof import('./src/layout/Footer.vue')['default']
     FormInput: typeof import('./src/components/form/input/FormInput.vue')['default']
     FormRange: typeof import('./src/components/form/input/FormRange.vue')['default']
     FormSelect: typeof import('./src/components/form/input/FormSelect.vue')['default']

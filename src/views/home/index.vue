@@ -4,7 +4,7 @@
   <div class="bg-layout">
     <Hero />
     <FilterBar />
-    <Container class="mt-10">
+    <Container class="py-10">
       <LandingSection
         :section-name="'Trending Now'"
         :ani-list="landingAniList.trending.media"
@@ -29,6 +29,7 @@
       <Ranking :ani-list="landingAniList.topAnime.media" />
     </Container>
   </div>
+  <Footer />
 </template>
 
 <script setup lang="ts">

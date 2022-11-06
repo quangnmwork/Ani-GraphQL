@@ -27,6 +27,7 @@
   "dependencies": {
     "@vueuse/core": "^8.9.4",
     "ant-design-vue": "^3.2.12",
+    "daisyui": "^2.38.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.18",
     "sass": "^1.54.4",
