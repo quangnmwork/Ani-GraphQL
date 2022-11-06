@@ -19,7 +19,7 @@
     </a>
     <div class="content">
       <div class="text-[14px]">
-        <div>
+        <div class="mb-[8px]">
           <a class="content-title font-semibold text-ani-gray-900">
             {{ props.media.title.userPreferred }}
           </a>
@@ -40,8 +40,20 @@
           class="inline-block align-top"
         />
         <div class="mt-[-3px] inline-block pl-[4px]">
-          {{ props.media.averageScore }}%
+          <span>{{ props.media.averageScore }}%</span>
           <div class="text-[12px] text-ani-gray-600">{{ props.media.popularity }} users</div>
+        </div>
+      </div>
+      <div>
+        <div class="mt-[-3px] inline-block pl-[4px]">
+          <span>{{ format.formatConvert }}</span>
+          <div class="text-[12px] text-ani-gray-600">{{ format.duration }}</div>
+        </div>
+      </div>
+      <div>
+        <div class="mt-[-3px] inline-block pl-[4px]">
+          <span>{{ props.media.season }} {{ props.media.seasonYear }}</span>
+          <div class="text-[12px] text-ani-gray-600">{{ props.media.status }}</div>
         </div>
       </div>
     </div>
@@ -57,6 +69,22 @@ interface RankingItemProps {
 const props = defineProps<RankingItemProps>();
 
 const { icon } = getEmotionIconByScore(props.media ? props.media.averageScore : 0);
+
+const format = computed(() => {
+  if (props.media.format === 'MOVIE') {
+    const hour = Math.floor(props.media.duration / 60);
+    const minutes = props.media.duration - hour * 60;
+    return {
+      formatConvert: 'Movie',
+      duration: `${hour} hours , ${minutes} minutes`,
+    };
+  }
+
+  return {
+    formatConvert: `${props.media.format} Show`,
+    duration: `${props.media.episodes} episodes`,
+  };
+});
 </script>
 <style scoped>
 .content {
@@ -68,6 +96,7 @@ const { icon } = getEmotionIconByScore(props.media ? props.media.averageScore : 
   grid-template-columns: minmax(auto, calc(100% - 440px)) 130px 130px 150px;
   grid-gap: 10px;
 }
+
 .content-title:hover {
   color: v-bind('props.media.coverImage.color');
 }
