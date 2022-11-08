@@ -3,7 +3,7 @@
 
   <div class="bg-layout">
     <Hero />
-    <FilterBar />
+    <!-- <FilterBar /> -->
     <Container class="py-10">
       <LandingSection
         :section-name="'Trending Now'"
@@ -11,7 +11,7 @@
         :is-loading="loading"
       />
 
-      <LandingSection
+      <!-- <LandingSection
         :section-name="'Popular this season'"
         :ani-list="landingAniList.popularSeason.media"
         :is-loading="loading"
@@ -25,7 +25,7 @@
         :section-name="'All Time Popular'"
         :ani-list="landingAniList.popularAllTime.media"
         :is-loading="loading"
-      />
+      /> -->
       <Ranking :ani-list="landingAniList.topAnime.media" />
     </Container>
   </div>

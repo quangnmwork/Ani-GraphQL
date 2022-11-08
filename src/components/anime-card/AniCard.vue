@@ -106,7 +106,13 @@ const inViewport = ref<HTMLDivElement>();
 onMounted(() => {
   const updateUI = () => {
     if (inViewport.value) {
-      if (inViewport.value?.getBoundingClientRect().right > window.innerWidth) {
+      console.log(inViewport.value?.getBoundingClientRect());
+      console.log(window.innerWidth);
+      if (
+        inViewport.value?.getBoundingClientRect().right +
+          inViewport.value?.getBoundingClientRect().width >=
+        window.innerWidth
+      ) {
         inViewport.value?.classList.remove('left-full');
         inViewport.value?.classList.remove('ml-[18px]');
         inViewport.value?.classList.add('mr-[18px]');
@@ -161,9 +167,11 @@ const timeEpisode = computed(() => {
 .ani-info {
   transition: all 0.2s linear;
 }
-.ani-container:hover .ani-info {
-  opacity: 1;
-  visibility: visible;
+@media (min-width: 940px) {
+  .ani-container:hover .ani-info {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 .ani-container:hover .ani-info::before {
   content: '';
