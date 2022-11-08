@@ -11,7 +11,7 @@
         :is-loading="loading"
       />
 
-      <!-- <LandingSection
+      <LandingSection
         :section-name="'Popular this season'"
         :ani-list="landingAniList.popularSeason.media"
         :is-loading="loading"
@@ -25,8 +25,13 @@
         :section-name="'All Time Popular'"
         :ani-list="landingAniList.popularAllTime.media"
         :is-loading="loading"
-      /> -->
+      />
       <Ranking :ani-list="landingAniList.topAnime.media" />
+      <LandingSection
+        :section-name="'Top 100'"
+        :ani-list="landingAniList.topAnime.media"
+        :is-loading="loading"
+      />
     </Container>
   </div>
   <Footer />

@@ -17,14 +17,14 @@
         :alt="props.media.title.userPreferred"
       />
     </a>
-    <div class="content">
+    <div class="content overflow-auto">
       <div class="text-[14px]">
         <div class="mb-[8px]">
           <a class="content-title font-semibold text-ani-gray-900">
             {{ props.media.title.userPreferred }}
           </a>
         </div>
-        <div class="ml-[-2px] flex h-[18px] flex-wrap items-center gap-[5px]">
+        <div class="ml-[-2px] mb-2 flex h-[18px] flex-wrap items-center gap-[3px]">
           <div
             v-for="(genre, id) in props.media.genres"
             :key="id"
