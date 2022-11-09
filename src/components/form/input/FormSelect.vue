@@ -32,7 +32,7 @@
       />
     </div>
     <div
-      class="absolute left-0 top-full z-50 mt-2 max-h-[500px] w-full rounded-md bg-white p-2 scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-scrollbar"
+      class="absolute left-0 top-full z-[100] mt-2 max-h-[500px] w-full rounded-md bg-white p-2 scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-scrollbar"
       :class="props.recommendList && isFocus ? 'block' : 'hidden'"
     >
       <div

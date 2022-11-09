@@ -6,7 +6,7 @@
     <label
       v-if="label"
       :for="uuid"
-      class="text-md font-semibold text-label"
+      class="text-[1.5rem] font-semibold text-label"
     >
       {{ label }}
     </label>

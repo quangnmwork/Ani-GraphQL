@@ -1,20 +1,20 @@
 <template>
-  <div class="py-10">
+  <div class="p-0 md:p-5 lg:p-10">
     <Container>
-      <div class="relative rounded-[20px] bg-bg-hero p-10 text-nav">
+      <div class="relative bg-bg-hero p-10 text-nav md:rounded-[20px]">
         <div class="text-center font-semibold">
-          <h1 class="text-3xl text-white">The next-generation anime platform</h1>
-          <h2 class="mx-auto mt-3 max-w-[370px] text-xl text-hero">
+          <h1 class="text-[3.2rem] text-white">The next-generation anime platform</h1>
+          <h2 class="mx-auto mt-3 max-w-[370px] text-[2.1rem] text-hero">
             Track, share, and discover your favorite anime and manga with AniList.
           </h2>
         </div>
         <div
-          class="my-10 grid grid-cols-[repeat(2,minmax(300px,400px))] justify-center gap-x-[70px] gap-y-[60px]"
+          class="my-10 grid grid-cols-[minmax(200px,500px)] justify-center gap-x-[70px] gap-y-[60px] lg:grid-cols-[repeat(2,minmax(300px,400px))]"
         >
           <div
             v-for="(item, index) in listHero"
             :key="index"
-            class="grid grid-cols-[80px_auto] gap-[40px]"
+            class="grid grid-cols-[80px_auto] flex-wrap justify-center gap-[40px]"
           >
             <div class="">
               <img
@@ -24,8 +24,8 @@
               />
             </div>
             <div>
-              <h3 class="text-xl text-[1.2rem] font-semibold text-white">{{ item.name }}</h3>
-              <p class="leading-[1.46] text-hero">{{ item.desc }}</p>
+              <h3 class="text-xl text-[1.8rem] font-semibold text-white">{{ item.name }}</h3>
+              <p class="mt-5 text-[1.4rem] leading-[1.46] text-hero">{{ item.desc }}</p>
             </div>
           </div>
         </div>

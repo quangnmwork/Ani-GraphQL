@@ -3,7 +3,7 @@
 
   <div class="bg-layout">
     <Hero />
-    <!-- <FilterBar /> -->
+    <FilterBar />
     <Container class="py-10">
       <LandingSection
         :section-name="'Trending Now'"
@@ -28,6 +28,7 @@
       />
       <Ranking :ani-list="landingAniList.topAnime.media" />
       <LandingSection
+        class="md:hidden"
         :section-name="'Top 100'"
         :ani-list="landingAniList.topAnime.media"
         :is-loading="loading"
@@ -67,7 +68,7 @@ watch(result, () => {
   for (const [key, value] of Object.entries(resData)) {
     landingAniList[key as keyof HomeAniProps] = value;
   }
-  console.log(landingAniList.topAnime.media);
+  // console.log(landingAniList.topAnime.media);
 });
 </script>
 <script lang="ts">

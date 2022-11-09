@@ -1,5 +1,5 @@
 <template>
-  <div class="py-5 md:hidden">
+  <div class="hidden py-5 md:block">
     <LandingHeading :section-name="'Top 100'" />
     <div class="grid grid-cols-[1fr] gap-[24px]">
       <RankingItem

@@ -14,9 +14,12 @@
             <li
               v-for="(item, index) in listNavigation"
               :key="index"
-              class="p-5 text-lg text-inherit"
+              class="p-5 text-lg"
             >
-              <a :href="item.link">
+              <a
+                :href="item.link"
+                class="text-[1.4rem]"
+              >
                 {{ item.name }}
               </a>
             </li>
