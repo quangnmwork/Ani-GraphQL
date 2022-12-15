@@ -9,6 +9,7 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const AIRING_STATUS: typeof import('./src/constant/shared')['AIRING_STATUS']
+  const COUNTRY: typeof import('./src/constant/shared')['COUNTRY']
   const EffectScope: typeof import('vue')['EffectScope']
   const FORMAT: typeof import('./src/constant/shared')['FORMAT']
   const FROM_YEAR: typeof import('./src/constant/shared')['FROM_YEAR']
@@ -277,6 +278,7 @@ declare module '@vue/runtime-core' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly AIRING_STATUS: UnwrapRef<typeof import('./src/constant/shared')['AIRING_STATUS']>
+    readonly COUNTRY: UnwrapRef<typeof import('./src/constant/shared')['COUNTRY']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly FORMAT: UnwrapRef<typeof import('./src/constant/shared')['FORMAT']>
     readonly FROM_YEAR: UnwrapRef<typeof import('./src/constant/shared')['FROM_YEAR']>

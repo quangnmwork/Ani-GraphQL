@@ -11,3 +11,4 @@ export const YEAR_CATEGORY = Array.from(
 export interface DynamicObject {
   [key: string]: any;
 }
+export const specialChars = new RegExp('<>@!#$%^&*()_+[]{}?:;|\'"\\,./~`-=');

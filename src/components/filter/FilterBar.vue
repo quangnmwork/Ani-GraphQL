@@ -1,10 +1,16 @@
 <template>
   <Container>
-    <form class="mt-20 grid grid-cols-[auto_42px] items-center">
+    <form
+      class="relative z-[700] mt-20 grid grid-cols-[auto_42px] items-center"
+      autocomplete="off"
+    >
       <div class="grid grid-cols-[auto_42px] gap-[24px] lg:grid-cols-[repeat(5,170px)]">
         <FormInput
+          v-model="email"
           label="Search"
           class="w-full lg:w-auto"
+          state="search"
+          @input="(e:any) =>{ onInput(e,'search')}"
         >
           <template #icon><SearchIcon /></template>
         </FormInput>
@@ -34,7 +40,7 @@
         </button>
         <template v-if="isLargeScreen && isDropdown">
           <div
-            class="absolute top-full right-0 z-50 mt-5 min-w-max rounded-sm border-red-300 bg-white p-5 drop-shadow-lg transition delay-200"
+            class="absolute top-full right-0 z-50 mt-5 min-w-max whitespace-nowrap rounded-sm border-red-300 bg-white p-5 drop-shadow-lg transition delay-200"
           >
             <div class="flex flex-wrap gap-4">
               <FormSelect
@@ -72,7 +78,7 @@
       </div>
       <template v-if="!isLargeScreen && isDropdown">
         <div
-          class="mt-10 grid snap-x snap-proximity scroll-p-10 auto-cols-[150px] grid-flow-col items-center gap-x-10 overflow-x-auto scrollbar-none"
+          class="relative mt-10 grid snap-x snap-proximity scroll-p-10 auto-cols-[150px] grid-flow-col items-center gap-x-10 overflow-x-auto"
         >
           <FormSelect
             v-for="(select, index) in formSelectList"
@@ -92,6 +98,22 @@
         </div>
       </template>
     </form>
+    <div
+      name="search-list"
+      class="mt-8 flex"
+    >
+      <TagIcon class="h-8 w-8" />
+      <a-tag
+        v-for="(item, id) in Object.keys(filterBarState).filter((key) =>
+          key.includes('$') || key.includes('_') ? false : true
+        )"
+        :key="id"
+        color="#3db4f2"
+        closable
+      >
+        <span>{{ filterBarState[item as keyof FilterBarState] }}</span>
+      </a-tag>
+    </div>
   </Container>
 </template>
 
@@ -104,11 +126,21 @@ import { GET_ALL_GENRES } from '~/graphQL/category';
 import { YEAR_CATEGORY, SEASON, FORMAT, AIRING_STATUS, COUNTRY } from '~/constant/shared';
 
 import _ from 'lodash';
+import { FilterBarState, useFilterBar } from '~/pinia/useFilterBar';
 
 const { result } = useQuery(GET_ALL_GENRES, { type: 'ANIME' });
 const isLargeScreen = useMediaQuery('(min-width: 1240px)');
+const filterBarState = useFilterBar();
 const isDoujin = ref(false);
 const isDropdown = ref(false);
+const email = ref('');
+
+const onInput = (e: any, state: string) => {
+  if (e.target.value) filterBarState[state as keyof FilterBarState] = e.target.value;
+  else {
+    delete filterBarState[state as keyof FilterBarState];
+  }
+};
 
 const formRangeList = [
   {
@@ -129,7 +161,6 @@ const formRangeList = [
     isRange: true,
     min: +YEAR_CATEGORY[0],
     max: +YEAR_CATEGORY[YEAR_CATEGORY.length - 1],
-
     label: 'Year Range',
   },
 ];
@@ -181,6 +212,6 @@ watch(result, () => {
   formSelectList[0].recommendList[0].list = result.value.genres;
   formSelectList[0].recommendList[1].list = result.value.tags;
   formSelectList[6].recommendList[0].list = result.value.externalLink;
-  console.log(formSelectList);
+  // console.log(formSelectList);
 });
 </script>

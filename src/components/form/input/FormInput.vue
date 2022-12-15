@@ -22,9 +22,11 @@
       </label>
       <input
         :id="uuid"
+        v-model="input"
         :type="props.type || 'text'"
         class="max-w-full"
         :placeholder="props.placeholder"
+        @input="(e )=> emits('update:value', {state:props.state,value:(e.target as HTMLInputElement)?.value})"
       />
     </div>
   </div>
@@ -32,13 +34,17 @@
 
 <script setup lang="ts">
 // import { ComponentInternalInstance } from 'vue';
+
 import UniqueId from '~/utils/uuid';
 
 const recommendRef = ref(null);
+const emits = defineEmits(['update:value']);
+const input = ref('');
 
 interface InputProps {
   label: string;
   type?: string;
+  state: string;
 
   iconPosition?: 'left' | 'right';
   placeholder?: string;
