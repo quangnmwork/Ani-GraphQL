@@ -109,9 +109,12 @@
         )"
         :key="id"
         color="#3db4f2"
-        closable
+        class="flex items-center gap-3"
       >
-        <span>{{ filterBarState[item as keyof FilterBarState] }}</span>
+        <span class="order-1">{{ filterBarState[item as keyof FilterBarState] }}</span>
+        <template #icon>
+          <CloseIcon class="order-2 fill-white" />
+        </template>
       </a-tag>
     </div>
   </Container>
@@ -165,7 +168,7 @@ const formRangeList = [
   },
 ];
 
-const formSelectList = reactive([
+const formSelectList = ref([
   {
     label: 'Genres',
     placeholder: 'any',
@@ -209,9 +212,9 @@ const formSelectList = reactive([
 
 watch(result, () => {
   // console.log(result.value);
-  formSelectList[0].recommendList[0].list = result.value.genres;
-  formSelectList[0].recommendList[1].list = result.value.tags;
-  formSelectList[6].recommendList[0].list = result.value.externalLink;
+  formSelectList.value[0].recommendList[0].list = result.value.genres;
+  formSelectList.value[0].recommendList[1].list = result.value.tags;
+  formSelectList.value[6].recommendList[0].list = result.value.externalLink;
   // console.log(formSelectList);
 });
 </script>

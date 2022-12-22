@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AniCard: typeof import('./src/components/anime-card/AniCard.vue')['default']
     ArrowDown: typeof import('./src/icons/ArrowDown.vue')['default']
+    CloseIcon: typeof import('./src/icons/CloseIcon.vue')['default']
     Container: typeof import('./src/layout/Container.vue')['default']
     FilterBar: typeof import('./src/components/filter/FilterBar.vue')['default']
     FilterIcon: typeof import('./src/icons/FilterIcon.vue')['default']

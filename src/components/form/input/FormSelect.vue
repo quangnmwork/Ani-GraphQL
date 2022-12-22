@@ -31,12 +31,13 @@
         @focus="onFocus"
       />
     </div>
+
     <div
       class="absolute left-0 top-full z-[100] mt-2 max-h-[500px] w-full rounded-md bg-white p-2 scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-scrollbar"
       :class="props.recommendList && isFocus ? 'block' : 'hidden'"
     >
       <div
-        v-for="(item, index) in listRecommend.list || props.recommendList"
+        v-for="(item, index) in listRecommend"
         :key="index"
       >
         <div
@@ -65,10 +66,10 @@ import { DynamicObject } from '~/constant/shared';
 
 import UniqueId from '~/utils/uuid';
 import _ from 'lodash';
-import Fuse from 'fuse.js';
 
 let isFocus = ref(false);
 const recommendRef = ref(null);
+
 interface FormSelectProps {
   label: string;
   placeholder?: string;
@@ -88,37 +89,29 @@ const variantClassObject = computed(() => ({
   'bg-input-solid': props?.variant && props.variant === 'solid',
 }));
 
-const recommendList = reactive({
-  list: props.recommendList,
-});
-
+// console.log(isReactive(recommendList.list));
 const onFocus = () => {
   isFocus.value = true;
 };
 
-const keyOptions = props.recommendList
-  ?.map((list) => {
-    if (list.keyItem) return list.keyItem;
-    else return;
-  })
-  .filter(Boolean) as string[];
-
-const fuse = new Fuse([] as (string | number | DynamicObject)[], {
-  keys: keyOptions?.length ? keyOptions : [],
-  threshold: 0.4,
-  includeMatches: true,
-  distance: 10,
-});
-
 const listRecommend = computed({
   get() {
-    if (!inputValue.value.length) return { list: props.recommendList };
-    props.recommendList?.forEach((list, index) => {
-      fuse.setCollection([]);
-      fuse.setCollection(list.list);
-      recommendList.list[index].list = _.map(fuse.search(inputValue.value), 'item');
-    });
-    return recommendList;
+    if (!inputValue.value.length) return props.recommendList;
+    return props.recommendList.map((item) => ({
+      list: item.list.filter((value) => {
+        if (typeof value === 'string') {
+          return value.toLowerCase().includes(inputValue.value.toLowerCase());
+        } else if (typeof value === 'number') {
+          return value.toString().includes(inputValue.value);
+        } else if (typeof value === 'object') {
+          return Object.values(value).some((value) =>
+            value.toString().toLowerCase().includes(inputValue.value.toLowerCase())
+          );
+        }
+      }),
+      title: item.title,
+      keyItem: item.keyItem,
+    }));
   },
 
   set() {},
