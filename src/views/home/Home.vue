@@ -1,41 +1,40 @@
 <template>
-  <Navigation />
+  <Layout>
+    <template #content>
+      <Container class="py-10">
+        <Hero />
+        <FilterBar />
+        <LandingSection
+          :section-name="'Trending Now'"
+          :ani-list="landingAniList.trending.media"
+          :is-loading="loading"
+        />
 
-  <div class="bg-layout">
-    <Hero />
-    <FilterBar />
-    <Container class="py-10">
-      <LandingSection
-        :section-name="'Trending Now'"
-        :ani-list="landingAniList.trending.media"
-        :is-loading="loading"
-      />
-
-      <LandingSection
-        :section-name="'Popular this season'"
-        :ani-list="landingAniList.popularSeason.media"
-        :is-loading="loading"
-      />
-      <LandingSection
-        :section-name="'Upcoming next season'"
-        :ani-list="landingAniList.nextSeason.media"
-        :is-loading="loading"
-      />
-      <LandingSection
-        :section-name="'All Time Popular'"
-        :ani-list="landingAniList.popularAllTime.media"
-        :is-loading="loading"
-      />
-      <Ranking :ani-list="landingAniList.topAnime.media" />
-      <LandingSection
-        class="md:hidden"
-        :section-name="'Top 100'"
-        :ani-list="landingAniList.topAnime.media"
-        :is-loading="loading"
-      />
-    </Container>
-  </div>
-  <Footer />
+        <LandingSection
+          :section-name="'Popular this season'"
+          :ani-list="landingAniList.popularSeason.media"
+          :is-loading="loading"
+        />
+        <LandingSection
+          :section-name="'Upcoming next season'"
+          :ani-list="landingAniList.nextSeason.media"
+          :is-loading="loading"
+        />
+        <LandingSection
+          :section-name="'All Time Popular'"
+          :ani-list="landingAniList.popularAllTime.media"
+          :is-loading="loading"
+        />
+        <Ranking :ani-list="landingAniList.topAnime.media" />
+        <LandingSection
+          class="md:hidden"
+          :section-name="'Top 100'"
+          :ani-list="landingAniList.topAnime.media"
+          :is-loading="loading"
+        />
+      </Container>
+    </template>
+  </Layout>
 </template>
 
 <script setup lang="ts">

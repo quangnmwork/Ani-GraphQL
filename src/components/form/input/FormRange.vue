@@ -12,6 +12,7 @@
       :range="props.isRange"
       :min="props.min"
       :max="props.max"
+      @after-change="onAfterChange"
     />
   </div>
 </template>
@@ -24,6 +25,8 @@ interface FormRangeProps {
   max: number;
   label?: string;
 }
+
+const emits = defineEmits(['change']);
 const props = withDefaults(defineProps<FormRangeProps>(), {
   isRange: true,
   rangeValue: () => [1, 100],
@@ -32,6 +35,10 @@ const props = withDefaults(defineProps<FormRangeProps>(), {
   label: undefined,
 });
 const rangeValue = ref(props.rangeValue);
+
+const onAfterChange = (value: any) => {
+  emits('change', value);
+};
 </script>
 <style>
 .code-box-demo .ant-slider {

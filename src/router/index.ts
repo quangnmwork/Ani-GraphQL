@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Home from '~/views/home/index.vue';
+
 import NProgress from 'nprogress';
 
 const routes: RouteRecordRaw[] = [
@@ -9,7 +9,12 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/home',
-    component: Home,
+    component: () => import('~/views/home/Home.vue'),
+  },
+  {
+    path: '/search/anime',
+    component: () => import('~/views/search/Search.vue'),
+    props: true,
   },
 ];
 
@@ -28,4 +33,3 @@ index.afterEach((to, from) => {
 });
 
 export default index;
-
