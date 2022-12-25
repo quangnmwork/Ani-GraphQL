@@ -10,7 +10,7 @@
           label="Search"
           class="w-full lg:w-auto"
           state="search"
-          @input="(e:any) =>{ onInput(e,'search')}"
+          @input="(e:any) =>{ onInput(e.target.value,'search')}"
         >
           <template #icon><SearchIcon /></template>
         </FormInput>
@@ -21,6 +21,7 @@
           :placeholder="select.placeholder"
           class="hidden lg:block"
           :recommend-list="select.recommendList"
+          @select="(e:any) =>{ onInput(e,select.id)}"
         >
           <template #icon><ArrowDown /></template>
         </FormSelect>
@@ -138,8 +139,8 @@ const isDoujin = ref(false);
 const isDropdown = ref(false);
 const email = ref('');
 
-const onInput = (e: any, state: string) => {
-  if (e.target.value) filterBarState[state as keyof FilterBarState] = e.target.value;
+const onInput = (value: any, state: string) => {
+  if (value) filterBarState[state as keyof FilterBarState] = value;
   else {
     delete filterBarState[state as keyof FilterBarState];
   }
@@ -172,7 +173,7 @@ const formSelectList = ref([
   {
     label: 'Genres',
     placeholder: 'any',
-
+    id: 'genres',
     recommendList: [
       { title: 'Genres', list: [] },
       { title: 'Tags', list: [], keyItem: 'name' },
@@ -181,40 +182,44 @@ const formSelectList = ref([
   {
     label: 'Years',
     placeholder: 'any',
+    id: 'years',
     recommendList: [{ list: YEAR_CATEGORY }],
   },
   {
     label: 'Season',
     placeholder: 'any',
+    id: 'season',
     recommendList: [{ list: SEASON }],
   },
   {
     label: 'Format',
     placeholder: 'any',
+    id: 'format',
     recommendList: [{ list: FORMAT }],
   },
   {
     label: 'Airing status',
     placeholder: 'any',
+    id: 'airing',
     recommendList: [{ list: AIRING_STATUS }],
   },
   {
     label: 'Country',
     placeholder: 'any',
+    id: 'country',
     recommendList: [{ list: COUNTRY }],
   },
   {
     label: 'Streaming On',
     placeholder: 'any',
+    id: 'stream',
     recommendList: [{ list: [], keyItem: 'site' }],
   },
 ]);
 
 watch(result, () => {
-  // console.log(result.value);
   formSelectList.value[0].recommendList[0].list = result.value.genres;
   formSelectList.value[0].recommendList[1].list = result.value.tags;
   formSelectList.value[6].recommendList[0].list = result.value.externalLink;
-  // console.log(formSelectList);
 });
 </script>

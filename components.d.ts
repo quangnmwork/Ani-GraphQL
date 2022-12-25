@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     FilterIcon: typeof import('./src/icons/FilterIcon.vue')['default']
     Footer: typeof import('./src/layout/Footer.vue')['default']
     FormInput: typeof import('./src/components/form/input/FormInput.vue')['default']
+    FormRange: typeof import('./src/components/form/input/FormRange.vue')['default']
     FormSelect: typeof import('./src/components/form/input/FormSelect.vue')['default']
     Hero: typeof import('./src/views/home/components/hero/Hero.vue')['default']
     LandingHeading: typeof import('./src/views/home/components/landing/LandingHeading.vue')['default']

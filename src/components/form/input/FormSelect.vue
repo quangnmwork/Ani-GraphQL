@@ -51,6 +51,7 @@
             v-for="(valueItem, id) in _.map(item.list, item.keyItem)"
             :key="id"
             class="cursor-pointer rounded-sm px-2 py-1 font-semibold transition duration-100 hover:bg-[#edf1f5] hover:text-[#3db4f2]"
+            @click="onSelect(valueItem)"
           >
             {{ valueItem }}
           </li>
@@ -81,6 +82,7 @@ interface FormSelectProps {
   variant?: 'solid' | 'outline';
 }
 
+const emits = defineEmits(['select']);
 const inputValue = ref('');
 const uuid = UniqueId().getID().toString();
 const props = defineProps<FormSelectProps>();
@@ -89,10 +91,17 @@ const variantClassObject = computed(() => ({
   'bg-input-solid': props?.variant && props.variant === 'solid',
 }));
 
-// console.log(isReactive(recommendList.list));
+const onSelect = (value: any) => {
+  inputValue.value = value;
+};
 const onFocus = () => {
   isFocus.value = true;
 };
+
+watchEffect(() => {
+  // console.log('input change', inputValue.value);
+  emits('select', inputValue.value);
+});
 
 const listRecommend = computed({
   get() {
