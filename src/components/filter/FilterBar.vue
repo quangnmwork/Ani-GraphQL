@@ -52,6 +52,7 @@
                 :placeholder="select.placeholder"
                 class="hidden lg:block"
                 :recommend-list="select.recommendList"
+                @select="(e:any) =>{ onInput(e,select.id)}"
               >
                 <template #icon><ArrowDown /></template>
               </FormSelect>
@@ -87,6 +88,7 @@
             :label="select.label"
             :placeholder="select.placeholder"
             :recommend-list="select.recommendList"
+            @select="(e:any) =>{ onInput(e,select.id)}"
           >
             <template #icon><ArrowDown /></template>
           </FormSelect>
