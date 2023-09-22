@@ -25,7 +25,6 @@ export interface FilterBarState {
 }
 
 export const formatTags = (value: any, type: keyof FilterBarState) => {
-  // console.log(value, type);
   if (!value) return;
   if (type == 'duration' || type == 'yearRange' || type == 'episodes') {
     return `${capitalize(type)}: ${value['0']} - ${value['1']}`;
@@ -40,3 +39,4 @@ export const useFilterBar = defineStore('useFilterBar', {
     return {};
   },
 });
+

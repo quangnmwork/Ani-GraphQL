@@ -1,19 +1,20 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-
 import NProgress from 'nprogress';
+import HomePage from '~/views/home/Home.vue';
+import { ROUTER_LINK } from './constants';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    redirect: '/home',
+    path: ROUTER_LINK.DEFAULT,
+    redirect: ROUTER_LINK.HOME,
   },
   {
-    path: '/home',
-    component: () => import('~/views/home/Home.vue'),
+    path: ROUTER_LINK.HOME,
+    component: HomePage,
   },
   {
-    path: '/search/anime',
-    component: () => import('~/views/search/Search.vue'),
+    path: ROUTER_LINK.SEARCH_ANIME,
+    component: HomePage,
     props: true,
   },
 ];
@@ -22,6 +23,7 @@ const index = createRouter({
   history: createWebHistory(),
   routes,
 });
+
 index.beforeEach((to, from) => {
   if (!NProgress.isStarted()) {
     NProgress.start();
@@ -33,3 +35,4 @@ index.afterEach((to, from) => {
 });
 
 export default index;
+
