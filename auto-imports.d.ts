@@ -13,6 +13,7 @@ declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const FORMAT: typeof import('./src/constant/shared')['FORMAT']
   const FROM_YEAR: typeof import('./src/constant/shared')['FROM_YEAR']
+  const ROUTER_LINK: typeof import('./src/router/constants')['ROUTER_LINK']
   const SEASON: typeof import('./src/constant/shared')['SEASON']
   const YEAR_CATEGORY: typeof import('./src/constant/shared')['YEAR_CATEGORY']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -40,6 +41,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const envD: typeof import('./src/env.d')['default']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const formatTags: typeof import('./src/pinia/useFilterBar')['formatTags']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getEmotionIconByScore: typeof import('./src/utils/getIcon')['getEmotionIconByScore']
@@ -93,6 +95,7 @@ declare global {
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
   const resolveComponent: typeof import('vue')['resolveComponent']
+  const resolveDirective: typeof import('vue')['resolveDirective']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
   const router: typeof import('./src/router/index')['default']
@@ -270,7 +273,7 @@ declare global {
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   interface ComponentCustomProperties {
     readonly $$: UnwrapRef<typeof import('vue/macros')['$$']>
     readonly $: UnwrapRef<typeof import('vue/macros')['$']>
@@ -284,6 +287,7 @@ declare module '@vue/runtime-core' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly FORMAT: UnwrapRef<typeof import('./src/constant/shared')['FORMAT']>
     readonly FROM_YEAR: UnwrapRef<typeof import('./src/constant/shared')['FROM_YEAR']>
+    readonly ROUTER_LINK: UnwrapRef<typeof import('./src/router/constants')['ROUTER_LINK']>
     readonly SEASON: UnwrapRef<typeof import('./src/constant/shared')['SEASON']>
     readonly YEAR_CATEGORY: UnwrapRef<typeof import('./src/constant/shared')['YEAR_CATEGORY']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -311,6 +315,7 @@ declare module '@vue/runtime-core' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly envD: UnwrapRef<typeof import('./src/env.d')['default']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly formatTags: UnwrapRef<typeof import('./src/pinia/useFilterBar')['formatTags']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getEmotionIconByScore: UnwrapRef<typeof import('./src/utils/getIcon')['getEmotionIconByScore']>
@@ -364,6 +369,7 @@ declare module '@vue/runtime-core' {
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
+    readonly resolveDirective: UnwrapRef<typeof import('vue')['resolveDirective']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>
     readonly resolveUnref: UnwrapRef<typeof import('@vueuse/core')['resolveUnref']>
     readonly router: UnwrapRef<typeof import('./src/router/index')['default']>

@@ -124,6 +124,7 @@ import FilterIcon from '~/icons/FilterIcon.vue';
 import { useQuery } from '@vue/apollo-composable';
 import { GET_ALL_GENRES } from '~/graphQL/category';
 import { YEAR_CATEGORY, SEASON, FORMAT, AIRING_STATUS, COUNTRY } from '~/constant/shared';
+import {useRouter} from 'vue-router'
 
 import _ from 'lodash';
 import { FilterBarState, formatTags, useFilterBar } from '~/pinia/useFilterBar';
@@ -134,6 +135,8 @@ const filterBarState = useFilterBar();
 
 const isDropdown = ref(false);
 const email = ref('');
+
+const router = useRouter()
 
 const onInput = (value: any, state: string) => {
   if (value) filterBarState[state as keyof FilterBarState] = value;
@@ -226,4 +229,8 @@ watch(result, () => {
   formSelectList.value[0].recommendList[1].list = result.value.tags;
   formSelectList.value[6].recommendList[0].list = result.value.externalLink;
 });
+
+watch(filterBarState, () => {
+  router.push('/search/anime')
+})
 </script>
