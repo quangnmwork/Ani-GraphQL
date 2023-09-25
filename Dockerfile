@@ -8,6 +8,9 @@ RUN yarn install
 
 COPY . .
 
+RUN yarn build
+
+
 #NGINX 
 
 FROM nginx:stable-alpine as production-stage
