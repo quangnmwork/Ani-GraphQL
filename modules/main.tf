@@ -10,13 +10,9 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "ap-southeast-1"
-}
-
 resource "aws_ecr_repository" "repository" {
   name                 = "ani-app"
-  image_tag_mutability = var.immutable_ecr_repositories
+  image_tag_mutability = "MUTABLE"
   force_delete         = true
   image_scanning_configuration {
     scan_on_push = true
@@ -49,10 +45,71 @@ resource "aws_ecr_repository_policy" "policy" {
           "ecr:GetLifecyclePolicy",
           "ecr:InitiateLayerUpload",
           "ecr:PutImage",
-          "ecr:UploadLayerPart"
+          "ecr:UploadLayerPart",
+          "ecr:GetAuthorizationToken"
         ]
       }
     ]
   }
   EOF
 }
+
+# main.tf
+resource "aws_ecs_cluster" "ani_cluster" {
+  name = "ani_cluster" # Name your cluster here
+
+}
+
+resource "aws_ecs_task_definition" "ani_task_definition" {
+  family       = "ani_cluster"
+  cpu          = 1024
+  memory       = 2048
+  network_mode = "awsvpc"
+  container_definitions = jsonencode([
+    {
+      name      = "ani_task",
+      image     = "${aws_ecr_repository.repository.repository_url}",
+      essential = true
+      portMappings = [
+        {
+          containerPort = 80
+          hostPort      = 80
+        }
+      ]
+      network_mode = "awsvpc"
+
+    }
+  ])
+
+  requires_compatibilities = ["FARGATE"]
+  task_role_arn            = "arn:aws:iam::007142787967:role/ecsUdemy"
+  execution_role_arn       = "arn:aws:iam::007142787967:role/ecsUdemy"
+}
+
+
+
+# data "aws_ami" "ubuntu" {
+#   most_recent = true
+#   filter {
+#     name   = "name"
+#     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+#   }
+
+#   filter {
+#     name   = "virtualization-type"
+#     values = ["hvm"]
+#   }
+
+#   owners = ["099720109477"] # Canonical
+# }
+
+# resource "aws_instance" "ani-dev-instance" {
+
+#   ami           = data.aws_ami.ubuntu.id
+#   instance_type = "t2.micro"
+
+
+#   tags = {
+#     "name" = "ani-app"
+#   }
+# }
