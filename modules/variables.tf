@@ -5,8 +5,8 @@ variable "docker_image_tag" {
 }
 
 variable "immutable_ecr_repositories" {
-  type    = bool
-  default = true
+  type    = string
+  default = "MUTABLE"
 }
 
 variable "region" {
