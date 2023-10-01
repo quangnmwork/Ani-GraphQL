@@ -46,7 +46,12 @@ jobs:
 
         run: |
           echo $REGISTRY
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker build -t $REGISTRY/$REPOSITORY .
+          docker tag $REGISTRY/$REPOSITORY $$$REGISTRY/$REPOSITORY:$IMAGE_TAG && docker tag $REGISTRY/$REPOSITORY $REGISTRY/$REPOSITORY:latest
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          aws ecr batch-delete-image --repository-name $REPOSITORY --image-ids imageTag=latest
+          docker push $REGISTRY/$REPOSITORY:latest
+
+
 
     
