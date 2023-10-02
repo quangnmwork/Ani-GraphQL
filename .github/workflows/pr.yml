@@ -27,7 +27,7 @@ jobs:
     name: Push docker image 
     runs-on: "ubuntu-latest"
     needs: build
-    if: github.event.pull_request.merged == true && github.event_name == 'pull_request'
+    # if: github.event.pull_request.merged == true && github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
       - name: Configure AWS credentials
@@ -65,11 +65,11 @@ jobs:
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: ${{ secrets.ECS_CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
+          container-name: ${{ secrets.ECS_CONTAINER_NAME }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
