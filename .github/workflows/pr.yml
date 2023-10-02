@@ -6,9 +6,9 @@ on:
       - "master"
 
 env:
-  ECS_SERVICE: ani_deploy                # set this to your Amazon ECS service name
+  ECS_TASK_DEFINITION: .github/workflows/task-definition.json      # set this to the path to your Amazon ECS task definition                                           # file, e.g. .aws/task-definition.json
+  ECS_SERVICE: anideploy                # set this to your Amazon ECS service name
   ECS_CLUSTER: ani_cluster
-  ECS_CONTAINER_NAME: ani_container
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
     name: Push docker image 
     runs-on: "ubuntu-latest"
     needs: build
-    # if: github.event.pull_request.merged == true && github.event_name == 'pull_request'
+    if: github.event.pull_request.merged == true && github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
       - name: Configure AWS credentials
@@ -65,16 +65,16 @@ jobs:
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
         with:
           task-definition: task-definition.json
-          container-name: ${{ env.ECS_CONTAINER_NAME }}
+          container-name: ${{ secrets.ECS_CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
+          service: ${{ secrets.ECS_SERVICE }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
           wait-for-service-stability: true
