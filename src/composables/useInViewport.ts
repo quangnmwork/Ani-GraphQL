@@ -1,2 +1,2 @@
-console.log('Use in view prt');
+console.log('Use in view prt,heiujwe');
 
