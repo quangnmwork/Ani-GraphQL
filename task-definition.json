@@ -1,0 +1,57 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:007142787967:task-definition/ani_cluster:8",
+    "containerDefinitions": [
+        {
+            "name": "ani_task",
+            "image": "007142787967.dkr.ecr.ap-southeast-1.amazonaws.com/ani-app",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "family": "ani_cluster",
+    "taskRoleArn": "arn:aws:iam::007142787967:role/ecsUdemy",
+    "executionRoleArn": "arn:aws:iam::007142787967:role/ecsUdemy",
+    "networkMode": "awsvpc",
+    "revision": 8,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "2048",
+    "registeredAt": "2023-10-02T22:05:54.663000+07:00",
+    "registeredBy": "arn:aws:iam::007142787967:user/terraform"
+}
