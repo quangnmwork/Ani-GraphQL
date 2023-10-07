@@ -18,7 +18,6 @@
         :key="index"
         :label="select.label"
         :placeholder="select.placeholder"
-        class="hidden lg:block"
         :recommend-list="select.recommendList"
         @select="(e:any) =>{ onInput(e,select.id)}"
       >
@@ -26,68 +25,58 @@
       </FormSelect>
     </div>
     <div class="relative">
-      <button
-        class="mt-10 flex w-full justify-center rounded-r-md bg-white p-2 font-semibold"
-        @click.prevent="
-          () => {
-            isDropdown = !isDropdown;
-          }
-        "
+      <a-popconfirm
+        :show-cancel="false"
+        placement="bottomRight"
       >
-        <FilterIcon
-          class="inline-block h-10 w-10 fill-current text-input transition-colors hover:text-main"
-        />
-      </button>
-      <template v-if="isLargeScreen && isDropdown">
-        <div
-          class="absolute top-full right-0 z-50 mt-5 min-w-max whitespace-nowrap rounded-sm border-red-300 bg-white p-5 drop-shadow-lg transition delay-200"
-        >
-          <div class="flex flex-wrap gap-4">
-            <FormSelect
-              v-for="(select, index) in formSelectList.slice(4, 7)"
-              :key="index"
-              :label="select.label"
-              variant="solid"
-              :placeholder="select.placeholder"
-              class="hidden lg:block"
-              :recommend-list="select.recommendList"
-              @select="(e:any) =>{ onInput(e,select.id)}"
-            >
-              <template #icon><ArrowDown /></template>
-            </FormSelect>
+        <template #icon></template>
+        <template #cancelText></template>
+        <template #okText></template>
+        <button class="mt-10 flex w-full justify-center rounded-r-md bg-white p-2 font-semibold">
+          <FilterIcon
+            class="inline-block h-10 w-10 fill-current text-input transition-colors hover:text-main"
+          />
+        </button>
+        <template #title>
+          <div class="min-w-max whitespace-nowrap border-red-300 bg-white">
+            <div class="flex flex-wrap gap-4">
+              <FormSelect
+                v-for="(select, index) in formSelectList.slice(4, 7)"
+                :key="index"
+                :label="select.label"
+                variant="outline"
+                :placeholder="select.placeholder"
+                :recommend-list="select.recommendList"
+                @select="
+                  (e) => {
+                    onInput(e, select.id);
+                  }
+                "
+              >
+                <template #icon><ArrowDown /></template>
+              </FormSelect>
+            </div>
+            <div class="mr-[100px] mt-4 grid grid-cols-[repeat(3,180px)] gap-10">
+              <FormRange
+                v-for="(range, index) in formRangeList"
+                :key="index"
+                class="inline-block"
+                :is-range="range.isRange"
+                :min="range.min"
+                :max="range.max"
+                :range-value="[range.min, range.max]"
+                :label="range.label"
+                @change="
+                  (e) => {
+                    onRangeChange(e, range.id);
+                  }
+                "
+              />
+            </div>
           </div>
-          <div class="mt-4 mr-[100px] grid grid-cols-[repeat(3,180px)] gap-10">
-            <FormRange
-              v-for="(range, index) in formRangeList"
-              :key="index"
-              class="inline-block"
-              :is-range="range.isRange"
-              :min="range.min"
-              :max="range.max"
-              :range-value="[range.min, range.max]"
-              :label="range.label"
-              @change="(e:any) => {onRangeChange(e,range.id)}"
-            />
-          </div>
-        </div>
-      </template>
+        </template>
+      </a-popconfirm>
     </div>
-    <template v-if="!isLargeScreen && isDropdown">
-      <div
-        class="relative mt-10 grid snap-x snap-proximity scroll-p-10 auto-cols-[150px] grid-flow-col items-center gap-x-10 overflow-x-auto"
-      >
-        <FormSelect
-          v-for="(select, index) in formSelectList"
-          :key="index"
-          :label="select.label"
-          :placeholder="select.placeholder"
-          :recommend-list="select.recommendList"
-          @select="(e:any) =>{ onInput(e,select.id)}"
-        >
-          <template #icon><ArrowDown /></template>
-        </FormSelect>
-      </div>
-    </template>
   </form>
   <div
     name="search-list"
@@ -108,7 +97,7 @@
       <template #icon>
         <CloseIcon
           class="order-2 cursor-pointer fill-white"
-          @click=" () => {
+          @click="() => {
             delete filterBarState[item as keyof FilterBarState];
           }"
         />
@@ -124,19 +113,17 @@ import FilterIcon from '~/icons/FilterIcon.vue';
 import { useQuery } from '@vue/apollo-composable';
 import { GET_ALL_GENRES } from '~/graphQL/category';
 import { YEAR_CATEGORY, SEASON, FORMAT, AIRING_STATUS, COUNTRY } from '~/constant/shared';
-import {useRouter} from 'vue-router'
+import { useRouter } from 'vue-router';
 
 import _ from 'lodash';
 import { FilterBarState, formatTags, useFilterBar } from '~/pinia/useFilterBar';
 
 const { result } = useQuery(GET_ALL_GENRES, { type: 'ANIME' });
-const isLargeScreen = useMediaQuery('(min-width: 1240px)');
 const filterBarState = useFilterBar();
 
-const isDropdown = ref(false);
 const email = ref('');
 
-const router = useRouter()
+const router = useRouter();
 
 const onInput = (value: any, state: string) => {
   if (value) filterBarState[state as keyof FilterBarState] = value;
@@ -231,6 +218,13 @@ watch(result, () => {
 });
 
 watch(filterBarState, () => {
-  router.push('/search/anime')
-})
+  router.push('/search/anime');
+});
 </script>
+
+<style>
+.ant-popover-buttons {
+  height: 0 !important;
+}
+</style>
+

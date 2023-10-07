@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     AniCard: typeof import('./src/components/anime-card/AniCard.vue')['default']
     AnimeList: typeof import('./src/components/feature/home/AnimeList/AnimeList.vue')['default']
     AnimeListHome: typeof import('./src/components/feature/home/AnimeList/AnimeListHome.vue')['default']
+    AnimeListSearch: typeof import('./src/components/feature/home/AnimeList/AnimeListSearch.vue')['default']
     ArrowDown: typeof import('./src/icons/ArrowDown.vue')['default']
     CloseIcon: typeof import('./src/icons/CloseIcon.vue')['default']
     Container: typeof import('./src/layout/Container.vue')['default']

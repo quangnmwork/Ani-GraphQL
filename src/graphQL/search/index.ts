@@ -23,7 +23,7 @@ export const SEARCH_ANIME = gql`
     $durationLesser: Int
     $durationGreater: Int
     $year: String
-    $licensedBy: [Int]
+    $licensedBy: [String]
     $isLicensed: Boolean
   ) {
     Page(page: $page, perPage: 20) {
@@ -52,7 +52,7 @@ export const SEARCH_ANIME = gql`
         episodes_greater: $episodeGreater
         duration_lesser: $durationLesser
         duration_greater: $durationGreater
-        licensedById_in: $licensedBy
+        licensedBy_in: $licensedBy
         isLicensed: $isLicensed
         genre_in: $genres
         sort: $sort
@@ -114,3 +114,4 @@ export const SEARCH_ANIME = gql`
     }
   }
 `;
+

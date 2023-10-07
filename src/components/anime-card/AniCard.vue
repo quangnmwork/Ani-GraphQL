@@ -80,7 +80,7 @@
           class="mt-[22px] flex h-[20px] flex-wrap items-center overflow-hidden"
         >
           <span
-            v-for="(item, index) in props.ani.genres.slice(0,3)"
+            v-for="(item, index) in props.ani.genres.slice(0, 3)"
             :key="index"
             class="ani-genres mr-2 rounded-[10px] px-[12px] text-[1.2rem] lowercase text-white"
           >
@@ -185,3 +185,4 @@ const timeEpisode = computed(() => {
   border-top: 0.4rem solid transparent;
 }
 </style>
+

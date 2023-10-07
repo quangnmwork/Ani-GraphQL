@@ -23,6 +23,6 @@
     ]
   },
   "include": ["src", "components.d.ts", "auto-imports.d.ts", "graphql.d.ts"],
-
   "exclude": ["dist", "node_modules", "**/*.stories.ts"]
 }
+

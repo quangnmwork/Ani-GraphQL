@@ -38,5 +38,6 @@ export const useFilterBar = defineStore('useFilterBar', {
   state: (): Partial<FilterBarState> => {
     return {};
   },
+  getters: {},
 });
 
